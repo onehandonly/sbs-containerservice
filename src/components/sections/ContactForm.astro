@@ -108,9 +108,9 @@ const { phone = '+49 (0) 000 000 000' } = Astro.props;
         <label for="service" class="form-label">Leistung</label>
         <select id="service" name="service" class="form-input">
           <option value="">Bitte wählen …</option>
-          <option value="container-mieten">Container mieten</option>
-          <option value="entsorgung">Entsorgung & Recycling</option>
-          <option value="gewerbe">Gewerblicher Dauerdienst</option>
+          <option value="buerocontainer">Bürocontainer</option>
+          <option value="lagercontainer">Lagercontainer</option>
+          <option value="sanitaercontainer">Sanitärcontainer</option>
           <option value="sonstiges">Sonstiges</option>
         </select>
       </div>
@@ -123,7 +123,7 @@ const { phone = '+49 (0) 000 000 000' } = Astro.props;
           class="form-input form-textarea"
           required
           rows="4"
-          placeholder="Beschreiben Sie kurz Ihr Vorhaben: Materialart, Menge, Lieferadresse …"
+          placeholder="Beschreiben Sie kurz Ihr Vorhaben: Containertyp, Anzahl, Lieferadresse …"
         ></textarea>
       </div>
 
