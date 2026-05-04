@@ -1,0 +1,47 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  /** GTM data attributes for conversion tracking */
+  'data-gtm-event'?: string;
+  'data-gtm-label'?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const base = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 no-underline';
+
+const variants = {
+  primary:   'bg-[--color-brand-primary] text-white hover:brightness-110 focus-visible:ring-[--color-brand-primary]',
+  secondary: 'bg-[--color-brand-accent] text-white hover:brightness-110 focus-visible:ring-[--color-brand-accent]',
+  outline:   'border-2 border-[--color-brand-primary] text-[--color-brand-primary] hover:bg-[--color-brand-primary] hover:text-white focus-visible:ring-[--color-brand-primary]',
+};
+
+const sizes = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+
+const classes = [base, variants[variant], sizes[size], className].join(' ');
+---
+
+{href ? (
+  <a href={href} class={classes} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes} {...rest}>
+    <slot />
+  </button>
+)}
