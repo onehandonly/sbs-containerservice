@@ -4,7 +4,7 @@ import LandingHero from '../../components/lp/LandingHero.astro';
 import LandingFeatures from '../../components/lp/LandingFeatures.astro';
 import LandingForm from '../../components/lp/LandingForm.astro';
 
-const gtmLabel = 'lp_gruenschnitt-container';
+const gtmLabel = 'lp_gruenschnitt';
 
 const features = [
   {
@@ -36,7 +36,7 @@ const features = [
   canonical="https://www.sbs-containerservice.de/lp/gruenschnitt-container"
 >
   <LandingHero
-    headline="Grünschnitt Container — Garten entrümpeln, noch diese Woche"
+    headline="Grünschnitt-Container mieten – schnell und unkompliziert"
     subline="Perfekt für Frühjahrs- und Herbstarbeiten. Einfach alles rein: Äste, Laub, Rasenschnitt, Hecken. Schnelle Lieferung, unkomplizierte Abholung."
     ctaLabel="Grünschnitt Container anfragen"
     ctaHref="#anfrage"
@@ -116,7 +116,7 @@ const features = [
   <LandingForm
     ctaLabel="Grünschnitt Container anfragen"
     gtmLabel={gtmLabel}
-    defaultAbfallart="gruenschnitt"
+    selectVariant="menge"
     formHeading="Saisonangebot jetzt sichern"
     formSubheading="Begrenzte Containerkapazitäten im Frühjahr und Herbst. Jetzt anfragen und Wunschtermin erhalten."
   />

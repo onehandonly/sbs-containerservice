@@ -4,7 +4,7 @@ import LandingHero from '../../components/lp/LandingHero.astro';
 import LandingFeatures from '../../components/lp/LandingFeatures.astro';
 import LandingForm from '../../components/lp/LandingForm.astro';
 
-const gtmLabel = 'lp_bauschutt-container';
+const gtmLabel = 'lp_bauschutt';
 
 const features = [
   {
@@ -36,7 +36,7 @@ const features = [
   canonical="https://www.sbs-containerservice.de/lp/bauschutt-container"
 >
   <LandingHero
-    headline="Bauschutt Container — schnell geliefert, fachgerecht entsorgt"
+    headline="Bauschuttcontainer mieten – fachgerechte Entsorgung"
     subline="Zertifizierte Bauschutt-Entsorgung für Privat und Gewerbe. Alle Containergrößen verfügbar – kostenlos anfragen, Lieferung am nächsten Tag."
     ctaLabel="Bauschutt Container anfragen"
     ctaHref="#anfrage"
@@ -96,9 +96,9 @@ const features = [
   />
 
   <LandingForm
-    ctaLabel="Bauschutt Container anfragen"
+    ctaLabel="Bauschuttcontainer anfragen"
     gtmLabel={gtmLabel}
-    defaultAbfallart="bauschutt"
+    selectVariant="container-groesse"
     formHeading="Jetzt Bauschutt Container bestellen"
     formSubheading="Einfach Formular ausfüllen – wir melden uns innerhalb von 2 Stunden mit einem Festpreisangebot."
   />

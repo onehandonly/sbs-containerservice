@@ -1,5 +1,5 @@
 ---
-type SelectVariant = 'abfallart' | 'container-groesse' | 'menge';
+type SelectVariant = 'abfallart' | 'container-groesse' | 'menge' | 'anfrage-typ';
 
 interface Props {
   ctaLabel: string;
@@ -8,6 +8,8 @@ interface Props {
   defaultAbfallart?: string;
   /** Which select field variant to render as the third field */
   selectVariant?: SelectVariant;
+  /** Add a Firma field before Name (for B2B/Gewerbe pages) */
+  showFirmaField?: boolean;
   /** Heading for the form section */
   formHeading?: string;
   formSubheading?: string;
@@ -18,6 +20,7 @@ const {
   gtmLabel,
   defaultAbfallart = '',
   selectVariant = 'abfallart',
+  showFirmaField = false,
   formHeading = 'Jetzt kostenloses Angebot anfragen',
   formSubheading = 'Antwort in der Regel innerhalb von 2 Stunden – auch samstags.',
 } = Astro.props;
@@ -48,10 +51,19 @@ const mengen = [
   { value: 'gross', label: 'Groß – über 5 m³ (Baumschnitt, Gartenarbeit)' },
 ];
 
+const anfragenTypen = [
+  { value: '', label: 'Art der Anfrage …' },
+  { value: 'dauercontainer', label: 'Dauercontainer / Dauerstellung' },
+  { value: 'einzel-abruf', label: 'Einzel-Abruf' },
+  { value: 'rahmenvertrag', label: 'Rahmenvertrag' },
+  { value: 'sonstiges', label: 'Sonstiges / unbekannt' },
+];
+
 const selectConfig = {
   abfallart: { id: 'lp-abfallart', name: 'abfallart', label: 'Abfallart', options: abfallarten },
   'container-groesse': { id: 'lp-container-groesse', name: 'container_groesse', label: 'Container-Größe', options: containerGroessen },
   menge: { id: 'lp-menge', name: 'menge', label: 'Menge', options: mengen },
+  'anfrage-typ': { id: 'lp-anfrage-typ', name: 'anfrage_typ', label: 'Art der Anfrage', options: anfragenTypen },
 }[selectVariant];
 ---
 
@@ -98,6 +110,24 @@ const selectConfig = {
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <!-- Identify which LP this came from -->
       <input type="hidden" name="source" value={gtmLabel} />
+
+      {showFirmaField && (
+        <div class="lp-form__field">
+          <label for="lp-firma" class="lp-form__label">
+            Firma <span class="lp-form__required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="text"
+            id="lp-firma"
+            name="firma"
+            class="lp-form__input"
+            required
+            autocomplete="organization"
+            placeholder="Musterbau GmbH"
+            aria-required="true"
+          />
+        </div>
+      )}
 
       <div class="lp-form__field">
         <label for="lp-name" class="lp-form__label">

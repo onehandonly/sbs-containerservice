@@ -4,7 +4,7 @@ import LandingHero from '../../components/lp/LandingHero.astro';
 import LandingFeatures from '../../components/lp/LandingFeatures.astro';
 import LandingForm from '../../components/lp/LandingForm.astro';
 
-const gtmLabel = 'lp_gewerbe-entsorgung';
+const gtmLabel = 'lp_gewerbe_entsorgung';
 
 const features = [
   {
@@ -36,7 +36,7 @@ const features = [
   canonical="https://www.sbs-containerservice.de/lp/gewerbe-entsorgung"
 >
   <LandingHero
-    headline="Gewerbeentsorgung — verlässlich, mit Rechnung und Service-Garantie"
+    headline="Gewerbliche Containerentsorgung – maßgeschneidert für Ihr Unternehmen"
     subline="Für Handwerk, Einzelhandel und Industrie. Container auf Abruf, Dauerdienst-Vereinbarung, ordentliche Buchhaltungsbelege. Skalierbar mit Ihrem Betrieb."
     ctaLabel="Gewerbeangebot anfragen"
     ctaHref="#anfrage"
@@ -114,7 +114,8 @@ const features = [
   <LandingForm
     ctaLabel="Gewerbeangebot anfragen"
     gtmLabel={gtmLabel}
-    defaultAbfallart="gewerbeabfall"
+    showFirmaField={true}
+    selectVariant="anfrage-typ"
     formHeading="Gewerbeangebot anfordern"
     formSubheading="Für Dauerdienst, Rahmenvertrag oder Einzelauftrag. Ihr persönlicher Ansprechpartner meldet sich innerhalb von 2 Stunden."
   />
