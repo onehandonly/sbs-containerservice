@@ -1,0 +1,252 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'SBS Containerservice GmbH – Ihr zuverlässiger Partner für Container und Entsorgung.',
+  canonical,
+  ogImage,
+} = Astro.props;
+
+// Landing pages get their own canonical, explicitly set — never inherit homepage
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+
+const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
+const gadsConversionId = import.meta.env.PUBLIC_GADS_CONVERSION_ID ?? '';
+const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <!-- Dedupe with main site; landing pages are not indexable canonical sources -->
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <title>{title}</title>
+
+    <!-- Google Tag Manager -->
+    {gtmId && (
+      <script is:inline define:vars={{ gtmId }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer', gtmId);
+      </script>
+    )}
+
+    <!-- Google Ads global site tag (gtag) for conversion tracking fallback -->
+    {gadsConversionId && (
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gadsConversionId}`}></script>
+      <script is:inline define:vars={{ gadsConversionId, gadsConversionLabel }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gadsConversionId);
+        window.__GADS_CONVERSION_ID = gadsConversionId;
+        window.__GADS_CONVERSION_LABEL = gadsConversionLabel;
+      </script>
+    )}
+  </head>
+  <body class="lp-body">
+    <!-- GTM noscript fallback -->
+    {gtmId && (
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+          title="Google Tag Manager"
+        />
+      </noscript>
+    )}
+
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+    <!-- Minimal trust header — no full nav, just logo + phone -->
+    <header class="lp-header" role="banner">
+      <div class="lp-header__inner">
+        <a href="/" class="lp-header__logo" aria-label="SBS Containerservice GmbH – Startseite">
+          <span class="lp-header__logo-text">SBS</span>
+          <span class="lp-header__logo-sub">Containerservice</span>
+        </a>
+        <a href="tel:+49000000000" class="lp-header__phone" data-gtm-event="phone_click" data-gtm-label="lp_header">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.6 4.37 2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.98-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          +49 (0) 000 000 000
+        </a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Minimal LP footer — legal links only -->
+    <footer class="lp-footer" role="contentinfo">
+      <div class="lp-footer__inner">
+        <p class="lp-footer__copy">&copy; {new Date().getFullYear()} SBS Containerservice GmbH</p>
+        <nav aria-label="Rechtliches">
+          <ul class="lp-footer__links" role="list">
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Analytics event bridge -->
+    <script src="../scripts/analytics.ts"></script>
+  </body>
+</html>
+
+<style>
+  .lp-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -9999px;
+    left: 1rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 9999;
+    transition: top 0.1s;
+  }
+
+  .skip-link:focus-visible {
+    top: 1rem;
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  /* LP Header */
+  .lp-header {
+    background-color: white;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .lp-header__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .lp-header__logo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .lp-header__logo-text {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--color-brand-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .lp-header__logo-sub {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .lp-header__phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+  }
+
+  .lp-header__phone:hover {
+    opacity: 0.8;
+  }
+
+  /* LP Footer */
+  .lp-footer {
+    margin-top: auto;
+    background-color: var(--color-surface-alt);
+    border-top: 1px solid var(--color-border);
+    padding-block: 1.5rem;
+  }
+
+  .lp-footer__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .lp-footer__copy {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .lp-footer__links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .lp-footer__links a {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .lp-footer__links a:hover {
+    color: var(--color-brand-primary);
+  }
+
+  main {
+    flex: 1;
+  }
+</style>

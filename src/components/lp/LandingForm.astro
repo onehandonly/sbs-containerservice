@@ -1,0 +1,383 @@
+---
+type SelectVariant = 'abfallart' | 'container-groesse' | 'menge';
+
+interface Props {
+  ctaLabel: string;
+  gtmLabel: string;
+  /** Which Abfallart option is pre-selected for this campaign */
+  defaultAbfallart?: string;
+  /** Which select field variant to render as the third field */
+  selectVariant?: SelectVariant;
+  /** Heading for the form section */
+  formHeading?: string;
+  formSubheading?: string;
+}
+
+const {
+  ctaLabel,
+  gtmLabel,
+  defaultAbfallart = '',
+  selectVariant = 'abfallart',
+  formHeading = 'Jetzt kostenloses Angebot anfragen',
+  formSubheading = 'Antwort in der Regel innerhalb von 2 Stunden – auch samstags.',
+} = Astro.props;
+
+const abfallarten = [
+  { value: '', label: 'Abfallart wählen …' },
+  { value: 'bauschutt', label: 'Bauschutt' },
+  { value: 'gruenschnitt', label: 'Grünschnitt' },
+  { value: 'sperrmüll', label: 'Sperrmüll' },
+  { value: 'gemischte-abfaelle', label: 'Gemischte Abfälle' },
+  { value: 'holz', label: 'Holz' },
+  { value: 'metall', label: 'Metall / Schrott' },
+  { value: 'gewerbeabfall', label: 'Gewerbeabfall' },
+  { value: 'sonstiges', label: 'Sonstiges' },
+];
+
+const containerGroessen = [
+  { value: '', label: 'Größe wählen …' },
+  { value: '5m3', label: '5 m³ (klein – Renovierung, Badumbau)' },
+  { value: '7m3', label: '7 m³ (mittel – Hausumbau, Dachsanierung)' },
+  { value: '10m3', label: '10 m³ (groß – Abriss, Baustelle)' },
+];
+
+const mengen = [
+  { value: '', label: 'Menge wählen …' },
+  { value: 'klein', label: 'Klein – bis 1 m³ (Strauchschnitt, Laub)' },
+  { value: 'mittel', label: 'Mittel – 1–5 m³ (Hecke, Rasenschnitt)' },
+  { value: 'gross', label: 'Groß – über 5 m³ (Baumschnitt, Gartenarbeit)' },
+];
+
+const selectConfig = {
+  abfallart: { id: 'lp-abfallart', name: 'abfallart', label: 'Abfallart', options: abfallarten },
+  'container-groesse': { id: 'lp-container-groesse', name: 'container_groesse', label: 'Container-Größe', options: containerGroessen },
+  menge: { id: 'lp-menge', name: 'menge', label: 'Menge', options: mengen },
+}[selectVariant];
+---
+
+<section id="anfrage" class="lp-form-section" aria-labelledby="lp-form-heading">
+  <div class="lp-form-section__inner">
+    <div class="lp-form-section__header">
+      <h2 id="lp-form-heading" class="lp-form-section__heading">{formHeading}</h2>
+      <p class="lp-form-section__sub">{formSubheading}</p>
+
+      <!-- Reassurance strip -->
+      <ul class="lp-form-section__reassurance" role="list">
+        <li>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Kostenlos & unverbindlich
+        </li>
+        <li>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Festpreis ohne versteckte Kosten
+        </li>
+        <li>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Daten vertraulich & sicher
+        </li>
+      </ul>
+    </div>
+
+    <form
+      class="lp-form"
+      name="lp-anfrage"
+      method="POST"
+      action="/danke"
+      data-gtm-form={gtmLabel}
+      novalidate
+      aria-label="Angebotsanfrage"
+    >
+      <!-- Honeypot anti-spam -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <!-- Identify which LP this came from -->
+      <input type="hidden" name="source" value={gtmLabel} />
+
+      <div class="lp-form__field">
+        <label for="lp-name" class="lp-form__label">
+          Name <span class="lp-form__required" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="lp-name"
+          name="name"
+          class="lp-form__input"
+          required
+          autocomplete="name"
+          placeholder="Max Mustermann"
+          aria-required="true"
+        />
+      </div>
+
+      <div class="lp-form__field">
+        <label for="lp-phone" class="lp-form__label">
+          Telefon <span class="lp-form__required" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="tel"
+          id="lp-phone"
+          name="phone"
+          class="lp-form__input"
+          required
+          autocomplete="tel"
+          placeholder="+49 123 456789"
+          aria-required="true"
+        />
+      </div>
+
+      <div class="lp-form__field">
+        <label for={selectConfig.id} class="lp-form__label">
+          {selectConfig.label} <span class="lp-form__required" aria-hidden="true">*</span>
+        </label>
+        <select
+          id={selectConfig.id}
+          name={selectConfig.name}
+          class="lp-form__input lp-form__select"
+          required
+          aria-required="true"
+        >
+          {selectConfig.options.map(({ value, label }) => (
+            <option value={value} selected={value === defaultAbfallart || undefined}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div class="lp-form__field">
+        <label for="lp-plz" class="lp-form__label">
+          Postleitzahl <span class="lp-form__required" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="lp-plz"
+          name="plz"
+          class="lp-form__input"
+          required
+          inputmode="numeric"
+          pattern="[0-9]{5}"
+          maxlength="5"
+          placeholder="12345"
+          aria-required="true"
+          aria-describedby="lp-plz-hint"
+        />
+        <span id="lp-plz-hint" class="lp-form__hint">5-stellige Postleitzahl Ihres Lieferorts</span>
+      </div>
+
+      <div class="lp-form__privacy">
+        <label class="lp-form__checkbox-label">
+          <input type="checkbox" name="privacy" required class="lp-form__checkbox" aria-required="true" />
+          <span>
+            Ich stimme der <a href="/datenschutz" class="lp-form__link" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.
+            <span class="lp-form__required" aria-hidden="true">*</span>
+          </span>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="lp-form__submit"
+        data-gtm-event="cta_click"
+        data-gtm-label={gtmLabel}
+      >
+        {ctaLabel}
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+
+      <p class="lp-form__note">* Pflichtfelder. Wir melden uns innerhalb von 2 Stunden.</p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .lp-form-section {
+    padding-block: clamp(3rem, 2rem + 5vw, 6rem);
+    background-color: var(--color-surface-alt);
+  }
+
+  .lp-form-section__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+    align-items: start;
+  }
+
+  .lp-form-section__heading {
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.875rem;
+  }
+
+  .lp-form-section__sub {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .lp-form-section__reassurance {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .lp-form-section__reassurance li {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .lp-form-section__reassurance svg {
+    color: var(--color-brand-primary);
+    flex-shrink: 0;
+  }
+
+  /* Form card */
+  .lp-form {
+    background-color: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    box-shadow: 0 8px 40px oklch(18% 0.01 240 / 8%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .lp-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .lp-form__label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .lp-form__required {
+    color: var(--color-brand-accent);
+    margin-left: 0.1em;
+  }
+
+  .lp-form__input {
+    font-family: inherit;
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background-color: var(--color-surface-alt);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.7rem 0.875rem;
+    width: 100%;
+    transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .lp-form__input:focus-visible {
+    outline: none;
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 3px oklch(42% 0.18 240 / 15%);
+  }
+
+  .lp-form__select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .lp-form__hint {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .lp-form__privacy {
+    margin-top: -0.25rem;
+  }
+
+  .lp-form__checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .lp-form__checkbox {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.15rem;
+    accent-color: var(--color-brand-primary);
+    flex-shrink: 0;
+  }
+
+  .lp-form__link {
+    color: var(--color-brand-primary);
+  }
+
+  .lp-form__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-brand-accent);
+    color: white;
+    font-family: inherit;
+    font-size: var(--text-base);
+    font-weight: 800;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 1rem 1.75rem;
+    cursor: pointer;
+    transition: background-color var(--duration-fast), transform var(--duration-fast), box-shadow var(--duration-fast);
+    width: 100%;
+    box-shadow: 0 4px 16px oklch(62% 0.20 50 / 30%);
+    margin-top: 0.25rem;
+  }
+
+  .lp-form__submit:hover {
+    background-color: oklch(55% 0.22 50);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px oklch(62% 0.20 50 / 40%);
+  }
+
+  .lp-form__submit:active {
+    transform: translateY(0);
+  }
+
+  .lp-form__note {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .lp-form-section__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

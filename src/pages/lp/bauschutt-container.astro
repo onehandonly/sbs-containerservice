@@ -1,0 +1,202 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import LandingHero from '../../components/lp/LandingHero.astro';
+import LandingFeatures from '../../components/lp/LandingFeatures.astro';
+import LandingForm from '../../components/lp/LandingForm.astro';
+
+const gtmLabel = 'lp_bauschutt-container';
+
+const features = [
+  {
+    icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    title: 'Alle Bauschutt-Größen',
+    body: 'Von 5 m³ bis 36 m³ – wir haben den passenden Container für jeden Umbau, Abriss oder Neubau.',
+  },
+  {
+    icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+    title: 'Zugelassene Entsorgung',
+    body: 'Bauschutt unterliegt besonderen Vorschriften. Wir entsorgen rechtskonform mit offiziellem Entsorgungsnachweis.',
+  },
+  {
+    icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    title: 'Lieferung am nächsten Tag',
+    body: 'Bestellen Sie bis 14 Uhr – Lieferung erfolgt in der Regel am nächsten Werktag direkt auf Ihre Baustelle.',
+  },
+  {
+    icon: '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>',
+    title: 'Kein Asbest, kein Problem',
+    body: 'Kontaminierter Bauschutt (Asbest, Teer, PAK) – wir beraten Sie zur fachgerechten Sonderentsorgung.',
+  },
+];
+---
+
+<LandingLayout
+  title="Bauschutt Container mieten — schnell & fachgerecht entsorgen | SBS Containerservice"
+  description="Bauschutt Container für Ihre Baustelle. Alle Größen, zertifizierte Entsorgung, Lieferung am nächsten Tag. Jetzt kostenloses Angebot anfragen."
+  canonical="https://www.sbs-containerservice.de/lp/bauschutt-container"
+>
+  <LandingHero
+    headline="Bauschutt Container — schnell geliefert, fachgerecht entsorgt"
+    subline="Zertifizierte Bauschutt-Entsorgung für Privat und Gewerbe. Alle Containergrößen verfügbar – kostenlos anfragen, Lieferung am nächsten Tag."
+    ctaLabel="Bauschutt Container anfragen"
+    ctaHref="#anfrage"
+    gtmLabel={gtmLabel}
+    badge="Entsorgungsnachweis inklusive"
+  />
+
+  <!-- Permitted waste list -->
+  <section class="waste-list-section" aria-labelledby="waste-heading">
+    <div class="waste-list-section__inner">
+      <h2 id="waste-heading" class="waste-list-section__heading">Was darf in den Bauschutt-Container?</h2>
+      <div class="waste-lists">
+        <div class="waste-list waste-list--allowed">
+          <h3 class="waste-list__title">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Erlaubt
+          </h3>
+          <ul role="list">
+            <li>Beton & Mauerwerk</li>
+            <li>Ziegel & Kalksandstein</li>
+            <li>Fliesen & Keramik</li>
+            <li>Sand & Kies (unbelastet)</li>
+            <li>Putz & Mörtel</li>
+            <li>Dachziegel (ohne Asbest)</li>
+            <li>Natursteine</li>
+          </ul>
+        </div>
+        <div class="waste-list waste-list--forbidden">
+          <h3 class="waste-list__title">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+            Nicht erlaubt
+          </h3>
+          <ul role="list">
+            <li>Asbest (Sonderentsorgung nötig)</li>
+            <li>Teerhaltige Materialien</li>
+            <li>Farben & Lacke</li>
+            <li>Elektronikschrott</li>
+            <li>Hausmüll & Lebensmittel</li>
+            <li>Mineralwolle / Glaswolle</li>
+            <li>Chemikalien</li>
+          </ul>
+        </div>
+      </div>
+      <p class="waste-list-section__note">
+        Nicht sicher? Rufen Sie uns an — wir beraten Sie kostenlos zur richtigen Entsorgung.
+      </p>
+    </div>
+  </section>
+
+  <LandingFeatures
+    heading="Ihre Vorteile bei SBS Containerservice"
+    features={features}
+  />
+
+  <LandingForm
+    ctaLabel="Bauschutt Container anfragen"
+    gtmLabel={gtmLabel}
+    defaultAbfallart="bauschutt"
+    formHeading="Jetzt Bauschutt Container bestellen"
+    formSubheading="Einfach Formular ausfüllen – wir melden uns innerhalb von 2 Stunden mit einem Festpreisangebot."
+  />
+</LandingLayout>
+
+<style>
+  .waste-list-section {
+    padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+    background-color: var(--color-surface);
+  }
+
+  .waste-list-section__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+  }
+
+  .waste-list-section__heading {
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .waste-lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .waste-list {
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  .waste-list--allowed {
+    background-color: oklch(92% 0.08 150 / 30%);
+    border: 1.5px solid oklch(60% 0.14 150 / 30%);
+  }
+
+  .waste-list--forbidden {
+    background-color: oklch(93% 0.06 20 / 30%);
+    border: 1.5px solid oklch(60% 0.14 20 / 30%);
+  }
+
+  .waste-list__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-base);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .waste-list--allowed .waste-list__title svg { color: oklch(45% 0.14 150); }
+  .waste-list--forbidden .waste-list__title svg { color: oklch(50% 0.16 20); }
+
+  .waste-list ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .waste-list li {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    padding-left: 0.875rem;
+    position: relative;
+  }
+
+  .waste-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0.5;
+  }
+
+  .waste-list-section__note {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: 1.75rem;
+  }
+
+  @media (max-width: 600px) {
+    .waste-lists {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
