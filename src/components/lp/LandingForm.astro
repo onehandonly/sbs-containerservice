@@ -1,11 +1,9 @@
 ---
-type SelectVariant = 'abfallart' | 'container-groesse' | 'menge' | 'anfrage-typ';
+type SelectVariant = 'container-typ' | 'buero-nutzung' | 'lager-groesse' | 'sanitaer-ausstattung';
 
 interface Props {
   ctaLabel: string;
   gtmLabel: string;
-  /** Which Abfallart option is pre-selected for this campaign */
-  defaultAbfallart?: string;
   /** Which select field variant to render as the third field */
   selectVariant?: SelectVariant;
   /** Add a Firma field before Name (for B2B/Gewerbe pages) */
@@ -18,52 +16,51 @@ interface Props {
 const {
   ctaLabel,
   gtmLabel,
-  defaultAbfallart = '',
-  selectVariant = 'abfallart',
+  selectVariant = 'container-typ',
   showFirmaField = false,
   formHeading = 'Jetzt kostenloses Angebot anfragen',
   formSubheading = 'Antwort in der Regel innerhalb von 2 Stunden – auch samstags.',
 } = Astro.props;
 
-const abfallarten = [
-  { value: '', label: 'Abfallart wählen …' },
-  { value: 'bauschutt', label: 'Bauschutt' },
-  { value: 'gruenschnitt', label: 'Grünschnitt' },
-  { value: 'sperrmüll', label: 'Sperrmüll' },
-  { value: 'gemischte-abfaelle', label: 'Gemischte Abfälle' },
-  { value: 'holz', label: 'Holz' },
-  { value: 'metall', label: 'Metall / Schrott' },
-  { value: 'gewerbeabfall', label: 'Gewerbeabfall' },
+const containerTypen = [
+  { value: '', label: 'Container-Typ wählen …' },
+  { value: 'buerocontainer', label: 'Bürocontainer' },
+  { value: 'lagercontainer', label: 'Lagercontainer' },
+  { value: 'sanitaercontainer', label: 'Sanitärcontainer' },
+  { value: 'kombi', label: 'Kombination / mehrere Einheiten' },
+  { value: 'sonstiges', label: 'Sonstiges / noch nicht sicher' },
+];
+
+const bueroNutzungen = [
+  { value: '', label: 'Nutzungszweck wählen …' },
+  { value: 'baustelle', label: 'Baustellen-Büro' },
+  { value: 'dauerbuero', label: 'Dauerhaftes Büro' },
+  { value: 'messe-event', label: 'Messe / Veranstaltung' },
+  { value: 'schule', label: 'Schule / Bildungseinrichtung' },
   { value: 'sonstiges', label: 'Sonstiges' },
 ];
 
-const containerGroessen = [
+const lagerGroessen = [
   { value: '', label: 'Größe wählen …' },
-  { value: '5m3', label: '5 m³ (klein – Renovierung, Badumbau)' },
-  { value: '7m3', label: '7 m³ (mittel – Hausumbau, Dachsanierung)' },
-  { value: '10m3', label: '10 m³ (groß – Abriss, Baustelle)' },
+  { value: '10fuss', label: '10 Fuß (ca. 14 m²)' },
+  { value: '20fuss', label: '20 Fuß (ca. 29 m²) – Standard' },
+  { value: '40fuss', label: '40 Fuß (ca. 59 m²) – Groß' },
+  { value: 'mehrere', label: 'Mehrere Einheiten' },
 ];
 
-const mengen = [
-  { value: '', label: 'Menge wählen …' },
-  { value: 'klein', label: 'Klein – bis 1 m³ (Strauchschnitt, Laub)' },
-  { value: 'mittel', label: 'Mittel – 1–5 m³ (Hecke, Rasenschnitt)' },
-  { value: 'gross', label: 'Groß – über 5 m³ (Baumschnitt, Gartenarbeit)' },
-];
-
-const anfragenTypen = [
-  { value: '', label: 'Art der Anfrage …' },
-  { value: 'dauercontainer', label: 'Dauercontainer / Dauerstellung' },
-  { value: 'einzel-abruf', label: 'Einzel-Abruf' },
-  { value: 'rahmenvertrag', label: 'Rahmenvertrag' },
-  { value: 'sonstiges', label: 'Sonstiges / unbekannt' },
+const sanitaerAusstattungen = [
+  { value: '', label: 'Ausstattung wählen …' },
+  { value: 'wc', label: 'WC-Container' },
+  { value: 'dusche', label: 'Dusch-Container' },
+  { value: 'kombi', label: 'WC + Dusche kombiniert' },
+  { value: 'komplett', label: 'Vollausstattung (WC, Dusche, Waschbecken)' },
 ];
 
 const selectConfig = {
-  abfallart: { id: 'lp-abfallart', name: 'abfallart', label: 'Abfallart', options: abfallarten },
-  'container-groesse': { id: 'lp-container-groesse', name: 'container_groesse', label: 'Container-Größe', options: containerGroessen },
-  menge: { id: 'lp-menge', name: 'menge', label: 'Menge', options: mengen },
-  'anfrage-typ': { id: 'lp-anfrage-typ', name: 'anfrage_typ', label: 'Art der Anfrage', options: anfragenTypen },
+  'container-typ': { id: 'lp-container-typ', name: 'container_typ', label: 'Container-Typ', options: containerTypen },
+  'buero-nutzung': { id: 'lp-buero-nutzung', name: 'buero_nutzung', label: 'Nutzungszweck', options: bueroNutzungen },
+  'lager-groesse': { id: 'lp-lager-groesse', name: 'lager_groesse', label: 'Gewünschte Größe', options: lagerGroessen },
+  'sanitaer-ausstattung': { id: 'lp-sanitaer-ausstattung', name: 'sanitaer_ausstattung', label: 'Ausstattung', options: sanitaerAusstattungen },
 }[selectVariant];
 ---
 
@@ -175,7 +172,7 @@ const selectConfig = {
           aria-required="true"
         >
           {selectConfig.options.map(({ value, label }) => (
-            <option value={value} selected={value === defaultAbfallart || undefined}>
+            <option value={value}>
               {label}
             </option>
           ))}
@@ -199,7 +196,7 @@ const selectConfig = {
           aria-required="true"
           aria-describedby="lp-plz-hint"
         />
-        <span id="lp-plz-hint" class="lp-form__hint">5-stellige Postleitzahl Ihres Lieferorts</span>
+        <span id="lp-plz-hint" class="lp-form__hint">5-stellige Postleitzahl Ihres Aufstellorts</span>
       </div>
 
       <div class="lp-form__privacy">
