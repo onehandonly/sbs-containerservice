@@ -53,7 +53,7 @@ const features = [
   <section class="product-info" aria-labelledby="product-heading">
     <div class="product-info__inner">
       <h2 id="product-heading" class="product-info__heading">Lagercontainer – Größen & Ausstattung</h2>
-      <p class="product-info__sub">Alle Einheiten mit Standardverriegelung, Stahlfußboden und Doppelflügeltür. Ausstattung auf Wunsch erweiterbar.</p>
+      <p class="product-info__sub">Alle Einheiten mit Standardverriegelung, Stahlfußboden und Doppelflügeltür. 20 Fuß und 40 Fuß auch als High Cube (+30 cm Höhe) verfügbar.</p>
       <ul class="product-grid" role="list">
         <li class="product-card">
           <span class="product-card__size">10 Fuß</span>
@@ -80,7 +80,7 @@ const features = [
           <span class="product-card__size">20 Fuß</span>
           <span class="product-card__use">Standard-Lager, ca. 14 m²</span>
           <ul class="product-card__features">
-            <li>Universell einsetzbar</li>
+            <li>Auch als High Cube (+30 cm)</li>
             <li>Regalsystem nachrüstbar</li>
             <li>Hohe Nutzlast</li>
           </ul>
@@ -90,13 +90,36 @@ const features = [
           <span class="product-card__size">40 Fuß</span>
           <span class="product-card__use">Groß-Lager, ca. 29 m²</span>
           <ul class="product-card__features">
-            <li>Für große Mengen</li>
+            <li>Auch als High Cube (+30 cm)</li>
             <li>Trennwände möglich</li>
             <li>Fenster & Beleuchtung optional</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
       </ul>
+
+      <!-- Door options -->
+      <div class="product-options">
+        <h3 class="product-options__heading">Tür-Optionen für 20 & 40 Fuß</h3>
+        <ul class="product-options__list" role="list">
+          <li class="product-option">
+            <strong>Standard</strong>
+            <span>Doppelflügeltür (eine Seite)</span>
+          </li>
+          <li class="product-option">
+            <strong>Double Door</strong>
+            <span>Türen vorne und hinten</span>
+          </li>
+          <li class="product-option">
+            <strong>Side Door</strong>
+            <span>Zusätzliche Seitentür</span>
+          </li>
+          <li class="product-option">
+            <strong>All Sides Open</strong>
+            <span>Öffnung an allen Seiten</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -209,10 +232,58 @@ const features = [
     margin-top: 0.5rem;
   }
 
+  .product-options {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .product-options__heading {
+    font-size: var(--text-lg);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .product-options__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+
+  .product-option {
+    background-color: var(--color-surface-alt);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .product-option strong {
+    font-size: var(--text-base);
+    font-weight: 800;
+    color: var(--color-brand-primary);
+  }
+
+  .product-option span {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
   @media (max-width: 640px) {
     .product-grid {
       grid-template-columns: 1fr;
       max-width: 22rem;
+    }
+
+    .product-options__list {
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>
