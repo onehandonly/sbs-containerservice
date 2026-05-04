@@ -113,8 +113,30 @@ const { phone = '+49 (0) 4282 594650' } = Astro.props;
           <option value="sanitaercontainer">Sanitärcontainer</option>
           <option value="wohncontainer">Wohncontainer</option>
           <option value="baustellencontainer">Baustellencontainer</option>
+          <option value="containeranlage">Containeranlage</option>
           <option value="sonstiges">Sonstiges</option>
         </select>
+      </div>
+
+      <div class="form-field">
+        <label for="lieferung" class="form-label">Lieferung / Abholung</label>
+        <select id="lieferung" name="lieferung" class="form-input">
+          <option value="">Bitte wählen …</option>
+          <option value="selbstabholung">Selbstabholung</option>
+          <option value="lieferung-ohne-kran">Lieferung ohne Kran (Kunde lädt selbst ab)</option>
+          <option value="lieferung-mit-kran">Lieferung mit Kran (Abladen durch uns)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="strasse" class="form-label">Straße + Nr.</label>
+          <input type="text" id="strasse" name="strasse" class="form-input" autocomplete="street-address" placeholder="Musterstraße 1" />
+        </div>
+        <div class="form-field">
+          <label for="ort" class="form-label">Ort</label>
+          <input type="text" id="ort" name="ort" class="form-input" autocomplete="address-level2" placeholder="Musterstadt" />
+        </div>
       </div>
 
       <div class="form-field">
