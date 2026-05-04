@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/ui/Header.astro';
+import Footer from '../components/ui/Footer.astro';
+
+const phone = import.meta.env.PUBLIC_PHONE ?? '+49 (0) 000 000 000';
+---
+
+<Layout
+  title="Vielen Dank – SBS Containerservice GmbH"
+  description="Ihre Anfrage wurde erfolgreich übermittelt. Wir melden uns in Kürze bei Ihnen."
+  index={false}
+>
+  <Header phone={phone} />
+
+  <main id="main-content">
+    <section class="thankyou" aria-labelledby="thankyou-heading">
+      <div class="thankyou__inner">
+        <div class="thankyou__icon" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+
+        <h1 id="thankyou-heading" class="thankyou__heading">Vielen Dank für Ihre Anfrage!</h1>
+        <p class="thankyou__body">
+          Wir haben Ihre Nachricht erhalten und melden uns in der Regel noch am selben Werktag bei Ihnen zurück.
+        </p>
+        <p class="thankyou__body">
+          Bei dringenden Anliegen erreichen Sie uns direkt unter:
+        </p>
+        <a href={`tel:${phone.replace(/\s/g, '')}`} class="thankyou__phone" data-gtm-event="phone_click" data-gtm-label="thankyou_page">
+          {phone}
+        </a>
+
+        <a href="/" class="thankyou__back">Zurück zur Startseite</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .thankyou {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding-block: var(--space-section);
+    background-color: var(--color-surface);
+  }
+
+  .thankyou__inner {
+    max-width: 44rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .thankyou__icon {
+    width: 5rem;
+    height: 5rem;
+    background-color: oklch(95% 0.06 145);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: oklch(45% 0.18 145);
+  }
+
+  .thankyou__heading {
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .thankyou__body {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 36rem;
+    margin: 0;
+  }
+
+  .thankyou__phone {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-brand-primary);
+    text-decoration: none;
+  }
+
+  .thankyou__phone:hover {
+    text-decoration: underline;
+  }
+
+  .thankyou__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    font-weight: 700;
+    font-size: var(--text-base);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: background-color var(--duration-fast), transform var(--duration-fast);
+  }
+
+  .thankyou__back:hover {
+    background-color: oklch(36% 0.18 240);
+    transform: translateY(-1px);
+  }
+</style>

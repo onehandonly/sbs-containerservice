@@ -8,6 +8,8 @@ interface Props {
   canonical?: string;
   /** OG image absolute URL */
   ogImage?: string;
+  /** Set to false to noindex the page (e.g. /lp/, /danke) */
+  index?: boolean;
 }
 
 const {
@@ -15,12 +17,51 @@ const {
   description = 'SBS Containerservice GmbH – Ihr zuverlässiger Partner für Container und Entsorgung.',
   canonical,
   ogImage,
+  index = true,
 } = Astro.props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 
 // GTM container ID — set via PUBLIC_GTM_ID env variable, left empty in dev
 const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
+
+// LocalBusiness JSON-LD — real values come from env vars (set in hosting config)
+// Placeholders are clearly labelled so missing data doesn't produce incorrect schema
+const phone = import.meta.env.PUBLIC_PHONE ?? null;
+const email = import.meta.env.PUBLIC_EMAIL ?? null;
+const streetAddress = import.meta.env.PUBLIC_ADDRESS_STREET ?? null;
+const addressLocality = import.meta.env.PUBLIC_ADDRESS_CITY ?? null;
+const postalCode = import.meta.env.PUBLIC_ADDRESS_POSTCODE ?? null;
+const siteUrl = Astro.site?.href ?? 'https://www.sbs-containerservice.de';
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'SBS Containerservice GmbH',
+  description: 'Container-Vermietung und Entsorgungsdienstleistungen für Privat und Gewerbe.',
+  url: siteUrl,
+  ...(phone ? { telephone: phone } : {}),
+  ...(email ? { email } : {}),
+  ...(streetAddress && addressLocality && postalCode
+    ? {
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress,
+          addressLocality,
+          postalCode,
+          addressCountry: 'DE',
+        },
+      }
+    : {}),
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '17:00',
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -33,6 +74,10 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={index ? 'index,follow' : 'noindex,nofollow'} />
+
+    <!-- LocalBusiness structured data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block ad landing pages from indexing — they are for paid traffic only
+Disallow: /lp/
+
+# Block the thank-you page
+Disallow: /danke
+
+Sitemap: https://www.sbs-containerservice.de/sitemap-index.xml
