@@ -74,5 +74,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
     )}
 
     <slot />
+
+    <!-- Analytics event bridge: pushes dataLayer events for GTM triggers -->
+    <script src="../scripts/analytics.ts"></script>
   </body>
 </html>
