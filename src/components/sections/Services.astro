@@ -16,6 +16,11 @@ const services = [
     description: 'Voll ausgestattete Sanitärcontainer für Baustellen und Veranstaltungen – hygienisch, zuverlässig und sofort einsatzbereit.',
   },
   {
+    icon: 'anlage',
+    title: 'Containeranlagen',
+    description: 'Individuelle Containeranlagen aus mehreren Modulen – maßgeschneidert für Ihr Projekt. Büro-, Sanitär- und Lagereinheiten kombiniert.',
+  },
+  {
     icon: 'truck',
     title: 'Schnelle Lieferung',
     description: 'Kurzfristige Lieferung und Aufstellung in Ihrer Region. Wir koordinieren den Termin flexibel nach Ihren Wünschen.',
@@ -27,7 +32,7 @@ const services = [
   <div class="services__inner">
     <header class="section-header">
       <h2 id="services-heading" class="section-header__title">Unsere Leistungen</h2>
-      <p class="section-header__sub">Bürocontainer, Lagercontainer und Sanitärcontainer – direkt kaufen, schnell geliefert.</p>
+      <p class="section-header__sub">Bürocontainer, Lagercontainer, Sanitärcontainer und Containeranlagen – direkt kaufen, schnell geliefert.</p>
     </header>
 
     <ul class="services__grid" role="list">
@@ -53,6 +58,14 @@ const services = [
             {s.icon === 'sanitary' && (
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+              </svg>
+            )}
+            {s.icon === 'anlage' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="4" width="9" height="8" rx="1"/>
+                <rect x="10" y="4" width="9" height="8" rx="1"/>
+                <rect x="5" y="12" width="10" height="8" rx="1"/>
+                <line x1="5" y1="8" x2="15" y2="8"/>
               </svg>
             )}
             {s.icon === 'truck' && (
