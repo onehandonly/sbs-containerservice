@@ -1,7 +1,7 @@
 /* Design tokens — SBS Containerservice GmbH */
 :root {
   /* Brand palette */
-  --color-brand-primary: oklch(42% 0.18 240);    /* deep blue */
+  --color-brand-primary: #1A528E;                /* SBS CI blue */
   --color-brand-accent:  oklch(62% 0.20 50);     /* warm orange */
   --color-surface:       oklch(98% 0.005 240);
   --color-surface-alt:   oklch(94% 0.008 240);

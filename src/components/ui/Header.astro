@@ -3,14 +3,13 @@ interface Props {
   phone?: string;
 }
 
-const { phone = '+49 (0) 000 000 000' } = Astro.props;
+const { phone = '+49 (0) 4282 594650' } = Astro.props;
 ---
 
 <header class="site-header">
   <div class="site-header__inner">
     <a href="/" class="site-header__logo" aria-label="SBS Containerservice – Startseite">
-      <span class="site-header__logo-mark" aria-hidden="true">SBS</span>
-      <span class="site-header__logo-text">Containerservice</span>
+      <img src="/sbs-logo.svg" alt="SBS Containerservice" class="site-header__logo-img" width="160" height="53" />
     </a>
 
     <nav aria-label="Hauptnavigation" class="site-header__nav">
@@ -56,26 +55,13 @@ const { phone = '+49 (0) 000 000 000' } = Astro.props;
   .site-header__logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     text-decoration: none;
-    color: var(--color-text);
     flex-shrink: 0;
   }
 
-  .site-header__logo-mark {
-    background-color: var(--color-brand-primary);
-    color: white;
-    font-weight: 800;
-    font-size: 0.9rem;
-    padding: 0.2em 0.4em;
-    border-radius: var(--radius-sm);
-    letter-spacing: 0.05em;
-  }
-
-  .site-header__logo-text {
-    font-weight: 600;
-    font-size: var(--text-base);
-    color: var(--color-text);
+  .site-header__logo-img {
+    height: 2.5rem;
+    width: auto;
   }
 
   .site-header__nav {

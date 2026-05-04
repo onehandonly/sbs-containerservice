@@ -3,7 +3,7 @@ interface Props {
   phone?: string;
 }
 
-const { phone = '+49 (0) 000 000 000' } = Astro.props;
+const { phone = '+49 (0) 4282 594650' } = Astro.props;
 ---
 
 <section id="kontakt" class="contact" aria-labelledby="contact-heading">
@@ -33,8 +33,8 @@ const { phone = '+49 (0) 000 000 000' } = Astro.props;
           </svg>
           <div>
             <span class="contact-detail__label">E-Mail</span>
-            <a href="mailto:info@sbs-containerservice.de" class="contact-detail__value" data-gtm-event="email_click" data-gtm-label="contact_section">
-              info@sbs-containerservice.de
+            <a href="mailto:tb@sbs-container.de" class="contact-detail__value" data-gtm-event="email_click" data-gtm-label="contact_section">
+              tb@sbs-container.de
             </a>
           </div>
         </li>
@@ -111,6 +111,8 @@ const { phone = '+49 (0) 000 000 000' } = Astro.props;
           <option value="buerocontainer">Bürocontainer</option>
           <option value="lagercontainer">Lagercontainer</option>
           <option value="sanitaercontainer">Sanitärcontainer</option>
+          <option value="wohncontainer">Wohncontainer</option>
+          <option value="baustellencontainer">Baustellencontainer</option>
           <option value="sonstiges">Sonstiges</option>
         </select>
       </div>
@@ -270,7 +272,7 @@ const { phone = '+49 (0) 000 000 000' } = Astro.props;
   .form-input:focus-visible {
     outline: none;
     border-color: var(--color-brand-primary);
-    box-shadow: 0 0 0 3px oklch(42% 0.18 240 / 15%);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-primary) 15%, transparent);
   }
 
   .form-textarea {
@@ -326,7 +328,7 @@ const { phone = '+49 (0) 000 000 000' } = Astro.props;
   }
 
   .form-submit:hover {
-    background-color: oklch(36% 0.18 240);
+    background-color: #133d6b;
     transform: translateY(-1px);
   }
 

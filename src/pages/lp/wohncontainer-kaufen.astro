@@ -4,40 +4,40 @@ import LandingHero from '../../components/lp/LandingHero.astro';
 import LandingFeatures from '../../components/lp/LandingFeatures.astro';
 import LandingForm from '../../components/lp/LandingForm.astro';
 
-const gtmLabel = 'lp_buerocontainer';
+const gtmLabel = 'lp_wohncontainer';
 
 const features = [
   {
-    icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
-    title: 'Sofort einsatzbereit',
-    body: 'Unsere Bürocontainer werden komplett eingerichtet geliefert – Strom, Beleuchtung und Heizung bereits vorbereitet.',
+    icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    title: 'Wohnkomfort auf kleinem Raum',
+    body: 'Unsere Wohncontainer bieten vollwertige Wohnlösungen mit Küche, Bad und Schlafbereich – sofort bezugsfertig.',
   },
   {
     icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-    title: 'Wettergeschützt & robust',
-    body: 'Hochwertige Stahlkonstruktion, wärmegedämmt und witterungsbeständig. Für Innen- und Außeneinsatz geeignet.',
+    title: 'Wärmegedämmt & wetterfest',
+    body: 'Hochwertige Isolierung sorgt für angenehmes Raumklima zu jeder Jahreszeit. Robuste Stahlkonstruktion für dauerhaften Einsatz.',
   },
   {
     icon: '<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>',
-    title: 'Flexibel kombinierbar',
-    body: 'Mehrere Einheiten lassen sich zu größeren Büroflächen verbinden. Ideal für wachsende Teams und temporäre Projekte.',
+    title: 'Flexibel erweiterbar',
+    body: 'Einzelmodule oder Kombinationen – passen Sie den Wohnraum an Ihre Bedürfnisse an. Ideal für temporäre und dauerhafte Nutzung.',
   },
   {
     icon: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
     title: 'Transparente Festpreise',
-    body: 'Kein Kleingedrucktes. Unser Angebot gilt ab Anfrage – inklusive Lieferung und Aufstellung.',
+    body: 'Kein Kleingedrucktes. Festpreis ab Anfrage – inklusive Lieferung und Aufstellung vor Ort.',
   },
 ];
 ---
 
 <LandingLayout
-  title="Bürocontainer kaufen – sofort verfügbar | SBS Container GmbH"
-  description="Bürocontainer kaufen: robust, wärmegedämmt, sofort einsatzbereit. Faire Festpreise, schnelle Lieferung. Jetzt kostenloses Angebot anfragen!"
-  canonical="https://www.sbs-container.de/lp/buerocontainer-kaufen"
+  title="Wohncontainer kaufen – sofort bezugsfertig | SBS Container GmbH"
+  description="Wohncontainer kaufen: wärmegedämmt, komplett ausgestattet, sofort bezugsfertig. Faire Festpreise, schnelle Lieferung. Jetzt kostenloses Angebot anfragen!"
+  canonical="https://www.sbs-container.de/lp/wohncontainer-kaufen"
 >
   <LandingHero
-    headline="Bürocontainer kaufen – robust, flexibel, sofort einsatzbereit"
-    subline="Hochwertige Bürocontainer für Baustellen, Dauerbüros und Veranstaltungen. Faire Festpreise, schnelle Lieferung in Ihre Region."
+    headline="Wohncontainer kaufen – komfortabel, flexibel, sofort bezugsfertig"
+    subline="Hochwertige Wohncontainer für temporäres Wohnen, Unterkünfte und flexible Raumlösungen. Faire Festpreise, schnelle Lieferung in Ihre Region."
     ctaLabel="Jetzt Angebot anfragen"
     ctaHref="#anfrage"
     gtmLabel={gtmLabel}
@@ -45,34 +45,34 @@ const features = [
   />
 
   <LandingFeatures
-    heading="Warum SBS Bürocontainer?"
+    heading="Warum SBS Wohncontainer?"
     features={features}
   />
 
   <!-- Product overview section -->
   <section class="product-info" aria-labelledby="product-heading">
     <div class="product-info__inner">
-      <h2 id="product-heading" class="product-info__heading">Bürocontainer – Modelle & Ausstattung</h2>
+      <h2 id="product-heading" class="product-info__heading">Wohncontainer – Größen & Ausstattung</h2>
       <p class="product-info__sub">Alle Einheiten werden auf Wunsch individuell ausgestattet. Sprechen Sie uns an.</p>
       <ul class="product-grid" role="list">
         <li class="product-card">
           <span class="product-card__size">10 Fuß</span>
-          <span class="product-card__use">Einzelbüro, ca. 9 m²</span>
+          <span class="product-card__use">Einzelzimmer, ca. 9 m²</span>
           <ul class="product-card__features">
-            <li>Schreibtisch & Stuhl</li>
-            <li>LED-Beleuchtung</li>
-            <li>Heizung & Lüftung</li>
+            <li>Schlafbereich</li>
+            <li>Heizung & Beleuchtung</li>
+            <li>Stromanschluss</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
         <li class="product-card product-card--featured">
           <span class="product-card__badge">Beliebt</span>
           <span class="product-card__size">20 Fuß</span>
-          <span class="product-card__use">Teambüro, ca. 15 m²</span>
+          <span class="product-card__use">Wohneinheit, ca. 15 m²</span>
           <ul class="product-card__features">
-            <li>2–4 Arbeitsplätze</li>
-            <li>Isolierverglasung</li>
-            <li>Elektroinstallation</li>
+            <li>Wohn- & Schlafbereich</li>
+            <li>Küchenzeile möglich</li>
+            <li>Sanitärbereich optional</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
@@ -82,17 +82,7 @@ const features = [
           <ul class="product-card__features">
             <li>Individuell konfigurierbar</li>
             <li>Innenverbindung möglich</li>
-            <li>Für größere Teams</li>
-          </ul>
-          <span class="product-card__cta">Preis auf Anfrage</span>
-        </li>
-        <li class="product-card product-card--wide">
-          <span class="product-card__size">Baustellencontainer</span>
-          <span class="product-card__use">Bürocontainer mit integriertem Sanitärbereich</span>
-          <ul class="product-card__features">
-            <li>Büro + WC-Abteil in einer Einheit</li>
-            <li>Optional mit Dusche</li>
-            <li>Ideal für Baustellen ohne Sanitäranschluss</li>
+            <li>Gemeinschaftsräume</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
@@ -103,9 +93,9 @@ const features = [
   <LandingForm
     ctaLabel="Jetzt Angebot anfragen"
     gtmLabel={gtmLabel}
-    selectVariant="buero-nutzung"
+    selectVariant="wohn-groesse"
     formHeading="Kostenloses Angebot in 2 Minuten"
-    formSubheading="Beschreiben Sie Ihren Bedarf – wir melden uns innerhalb von 2 Stunden mit einem Festpreisangebot."
+    formSubheading="Teilen Sie uns Ihre gewünschte Größe mit – wir melden uns innerhalb von 2 Stunden mit einem Festpreisangebot."
   />
 </LandingLayout>
 
@@ -207,14 +197,6 @@ const features = [
     font-weight: 700;
     color: var(--color-brand-accent);
     margin-top: 0.5rem;
-  }
-
-  .product-card--wide {
-    grid-column: 1 / -1;
-    max-width: 36rem;
-    margin-inline: auto;
-    background-color: color-mix(in srgb, var(--color-brand-accent) 5%, white);
-    border-color: var(--color-brand-accent);
   }
 
   @media (max-width: 640px) {

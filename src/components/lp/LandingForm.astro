@@ -1,5 +1,5 @@
 ---
-type SelectVariant = 'container-typ' | 'buero-nutzung' | 'lager-groesse' | 'sanitaer-ausstattung';
+type SelectVariant = 'container-typ' | 'buero-nutzung' | 'lager-groesse' | 'sanitaer-ausstattung' | 'wohn-groesse';
 
 interface Props {
   ctaLabel: string;
@@ -56,11 +56,20 @@ const sanitaerAusstattungen = [
   { value: 'komplett', label: 'Vollausstattung (WC, Dusche, Waschbecken)' },
 ];
 
+const wohnGroessen = [
+  { value: '', label: 'Größe wählen …' },
+  { value: '10fuss', label: '10 Fuß – Einzelzimmer (ca. 9 m²)' },
+  { value: '20fuss', label: '20 Fuß – Wohneinheit (ca. 15 m²)' },
+  { value: 'kombination', label: 'Kombination – mehrere Einheiten' },
+  { value: 'sonstiges', label: 'Sonstiges / nicht sicher' },
+];
+
 const selectConfig = {
   'container-typ': { id: 'lp-container-typ', name: 'container_typ', label: 'Container-Typ', options: containerTypen },
   'buero-nutzung': { id: 'lp-buero-nutzung', name: 'buero_nutzung', label: 'Nutzungszweck', options: bueroNutzungen },
   'lager-groesse': { id: 'lp-lager-groesse', name: 'lager_groesse', label: 'Gewünschte Größe', options: lagerGroessen },
   'sanitaer-ausstattung': { id: 'lp-sanitaer-ausstattung', name: 'sanitaer_ausstattung', label: 'Ausstattung', options: sanitaerAusstattungen },
+  'wohn-groesse': { id: 'lp-wohn-groesse', name: 'wohn_groesse', label: 'Gewünschte Größe', options: wohnGroessen },
 }[selectVariant];
 ---
 
@@ -326,7 +335,7 @@ const selectConfig = {
   .lp-form__input:focus-visible {
     outline: none;
     border-color: var(--color-brand-primary);
-    box-shadow: 0 0 0 3px oklch(42% 0.18 240 / 15%);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-primary) 15%, transparent);
   }
 
   .lp-form__select {

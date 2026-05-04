@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-family: 'Jost', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
   font-size: var(--text-base);
   color: var(--color-text);
   background-color: var(--color-surface);
