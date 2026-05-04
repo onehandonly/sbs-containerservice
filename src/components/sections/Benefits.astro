@@ -1,0 +1,138 @@
+---
+const benefits = [
+  { stat: '24h', label: 'Lieferzeit', note: 'Kurzfristig verfügbar' },
+  { stat: '100%', label: 'Zuverlässig', note: 'Pünktlich und verlässlich' },
+  { stat: '15+', label: 'Jahre Erfahrung', note: 'Regional verwurzelt' },
+  { stat: '5★', label: 'Kundenbewertung', note: 'Zufriedene Kunden' },
+];
+---
+
+<section id="vorteile" class="benefits" aria-labelledby="benefits-heading">
+  <div class="benefits__inner">
+    <header class="section-header">
+      <h2 id="benefits-heading" class="section-header__title">Warum SBS?</h2>
+      <p class="section-header__sub">Ihr direkter Partner für Container und Entsorgung – ohne Umwege, ohne versteckte Kosten.</p>
+    </header>
+
+    <ul class="benefits__stats" role="list">
+      {benefits.map((b) => (
+        <li class="stat-item">
+          <span class="stat-item__value">{b.stat}</span>
+          <span class="stat-item__label">{b.label}</span>
+          <span class="stat-item__note">{b.note}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="benefits__trust">
+      <div class="trust-item">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Alle gängigen Materialien</span>
+      </div>
+      <div class="trust-item">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Transparente Preise</span>
+      </div>
+      <div class="trust-item">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Umweltzertifizierte Entsorgung</span>
+      </div>
+      <div class="trust-item">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Privatpersonen & Gewerbe</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    padding-block: var(--space-section);
+    background-color: var(--color-brand-primary);
+    color: white;
+  }
+
+  .benefits__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+  }
+
+  .benefits .section-header__title {
+    color: white;
+  }
+
+  .benefits .section-header__sub {
+    color: oklch(90% 0.04 240);
+  }
+
+  .benefits__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    margin-bottom: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: oklch(100% 0 0 / 10%);
+    border-radius: var(--radius-lg);
+    border: 1px solid oklch(100% 0 0 / 15%);
+    gap: 0.35rem;
+  }
+
+  .stat-item__value {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-brand-accent);
+    line-height: 1;
+  }
+
+  .stat-item__label {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: white;
+  }
+
+  .stat-item__note {
+    font-size: var(--text-xs);
+    color: oklch(85% 0.04 240);
+  }
+
+  .benefits__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.5rem;
+    justify-content: center;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    color: oklch(92% 0.03 240);
+  }
+
+  .trust-item svg {
+    color: var(--color-brand-accent);
+    flex-shrink: 0;
+  }
+</style>

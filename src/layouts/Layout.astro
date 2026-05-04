@@ -73,9 +73,33 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
       </noscript>
     )}
 
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     <slot />
 
     <!-- Analytics event bridge: pushes dataLayer events for GTM triggers -->
     <script src="../scripts/analytics.ts"></script>
   </body>
 </html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -9999px;
+    left: 1rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 9999;
+    transition: top 0.1s;
+  }
+
+  .skip-link:focus-visible {
+    top: 1rem;
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+</style>

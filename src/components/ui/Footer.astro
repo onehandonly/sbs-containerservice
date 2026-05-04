@@ -1,0 +1,82 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="site-footer__logo-mark" aria-label="SBS Containerservice GmbH">SBS</span>
+      <p class="site-footer__tagline">Ihr Partner für Container & Entsorgung</p>
+    </div>
+
+    <nav aria-label="Footer-Navigation" class="site-footer__nav">
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <p class="site-footer__copy">
+      &copy; {year} SBS Containerservice GmbH. Alle Rechte vorbehalten.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-text);
+    color: oklch(80% 0 0);
+    padding-block: 2.5rem;
+  }
+
+  .site-footer__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+    justify-content: space-between;
+  }
+
+  .site-footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .site-footer__logo-mark {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--color-brand-accent);
+    letter-spacing: 0.05em;
+  }
+
+  .site-footer__tagline {
+    font-size: var(--text-sm);
+    color: oklch(65% 0 0);
+  }
+
+  .site-footer__nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .site-footer__nav a {
+    text-decoration: none;
+    color: oklch(70% 0 0);
+    font-size: var(--text-sm);
+    transition: color var(--duration-fast);
+  }
+
+  .site-footer__nav a:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .site-footer__copy {
+    font-size: var(--text-xs);
+    color: oklch(55% 0 0);
+    width: 100%;
+    text-align: center;
+  }
+</style>

@@ -1,27 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/ui/Header.astro';
+import Footer from '../components/ui/Footer.astro';
 import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import ContactForm from '../components/sections/ContactForm.astro';
+
+const phone = '+49 (0) 000 000 000';
 ---
 
 <Layout
-  title="SBS Containerservice GmbH – Container & Entsorgung"
-  description="SBS Containerservice GmbH – Schnelle und zuverlässige Container-Lieferung für Privat und Gewerbe. Jetzt anfragen und Sofortangebot erhalten."
+  title="SBS Containerservice GmbH – Container mieten & Entsorgung"
+  description="SBS Containerservice GmbH – Schnelle Container-Lieferung für Privat und Gewerbe. Bauschutt, Sperrmüll, Grünschnitt. Jetzt Angebot anfragen!"
 >
-  <Hero
-    headline="Container einfach bestellen"
-    subline="Schnelle Lieferung, faire Preise – für Privat und Gewerbe in Ihrer Region."
-    ctaLabel="Jetzt Angebot anfragen"
-    ctaHref="#kontakt"
-  />
+  <Header phone={phone} />
 
   <main id="main-content">
-    <section id="kontakt" aria-labelledby="kontakt-heading">
-      <div style="max-width:72rem;margin-inline:auto;padding:var(--space-section) var(--space-gap)">
-        <h2 id="kontakt-heading" style="font-size:var(--text-2xl);font-weight:700;margin-bottom:1rem">
-          Kontakt & Anfrage
-        </h2>
-        <p style="color:var(--color-text-muted)">Kontaktformular folgt in Kürze.</p>
-      </div>
-    </section>
+    <Hero
+      headline="Container mieten – schnell und unkompliziert"
+      subline="Zuverlässige Container-Lieferung in Ihrer Region. Faire Preise, kurzfristige Verfügbarkeit – für Privat und Gewerbe."
+      ctaLabel="Jetzt Angebot anfragen"
+      ctaHref="#kontakt"
+    />
+
+    <Services />
+    <Benefits />
+    <ContactForm phone={phone} />
   </main>
+
+  <Footer />
 </Layout>
