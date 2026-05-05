@@ -6,6 +6,8 @@ interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  /** LCP hero image path for preload hint (e.g. "/img/lagercontainer.jpg") */
+  lcpImage?: string;
 }
 
 const {
@@ -13,6 +15,7 @@ const {
   description = 'SBS Containerservice GmbH – Ihr zuverlässiger Partner für Bürocontainer, Lagercontainer und Sanitärcontainer.',
   canonical,
   ogImage,
+  lcpImage,
 } = Astro.props;
 
 // Landing pages get their own canonical, explicitly set — never inherit homepage
@@ -34,7 +37,10 @@ const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Non-blocking font load -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800&display=swap" /></noscript>
+    {lcpImage && <link rel="preload" href={lcpImage} as="image" fetchpriority="high" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
