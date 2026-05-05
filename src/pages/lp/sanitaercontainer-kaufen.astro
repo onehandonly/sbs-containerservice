@@ -37,7 +37,7 @@ const features = [
 >
   <LandingHero
     headline="Sanitärcontainer kaufen – hygienisch, robust, kurzfristig lieferbar"
-    subline="Sanitärcontainer zum Anschluss an eine bestehende Containeranlage. Als WC-Container oder WC-Container mit Dusche oder auch als reinen Duschcontainer. Für jeden Bedarf das richtige Konzept."
+    subline="Sanitärcontainer. In verschiedenen Varianten, passend zu den Anforderungen – als neu oder gebraucht Container."
     ctaLabel="Jetzt Angebot anfragen"
     ctaHref="#anfrage"
     gtmLabel={gtmLabel}
@@ -60,8 +60,19 @@ const features = [
           <span class="product-card__use">WC-Container</span>
           <ul class="product-card__features">
             <li>Trennkabinen</li>
+            <li>Mit oder ohne Urinal</li>
             <li>Waschbecken</li>
             <li>Seifenspender & Spiegel</li>
+          </ul>
+          <span class="product-card__cta">Preis auf Anfrage</span>
+        </li>
+        <li class="product-card">
+          <span class="product-card__size">Dusche</span>
+          <span class="product-card__use">Duschcontainer</span>
+          <ul class="product-card__features">
+            <li>Einzelkabinen oder Reihenanlage</li>
+            <li>Warmwasser inklusive</li>
+            <li>Robuste Ausstattung</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
@@ -130,7 +141,7 @@ const features = [
   .product-grid {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
     max-width: 56rem;
     margin-inline: auto;
