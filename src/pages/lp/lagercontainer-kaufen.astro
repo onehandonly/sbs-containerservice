@@ -98,6 +98,21 @@ const features = [
         </li>
       </ul>
 
+      <!-- Condition options -->
+      <div class="product-options">
+        <h3 class="product-options__heading">Verfügbare Zustände</h3>
+        <ul class="product-options__list product-options__list--half" role="list">
+          <li class="product-option">
+            <strong>Gebraucht</strong>
+            <span>Geprüft, funktionsfähig, sofort einsatzbereit</span>
+          </li>
+          <li class="product-option">
+            <strong>Neuwertig (1× See-Reise)</strong>
+            <span>Nur eine Verschiffung, nahezu neuer Zustand</span>
+          </li>
+        </ul>
+      </div>
+
       <!-- Door options -->
       <div class="product-options">
         <h3 class="product-options__heading">Tür-Optionen für ausgewählte Modelle</h3>
@@ -252,6 +267,11 @@ const features = [
     gap: 1rem;
     max-width: 64rem;
     margin-inline: auto;
+  }
+
+  .product-options__list--half {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 40rem;
   }
 
   .product-option {
