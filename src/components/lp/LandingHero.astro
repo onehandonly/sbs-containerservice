@@ -6,6 +6,9 @@ interface Props {
   ctaHref?: string;
   gtmLabel: string;
   badge?: string;
+  /** Product image src (from /public/img/) */
+  image?: string;
+  imageAlt?: string;
 }
 
 const {
@@ -15,6 +18,8 @@ const {
   ctaHref = '#anfrage',
   gtmLabel,
   badge,
+  image,
+  imageAlt = 'SBS Container',
 } = Astro.props;
 ---
 
@@ -82,9 +87,23 @@ const {
       </div>
     </div>
 
-    <!-- Visual: review stars widget -->
-    <div class="lp-hero__social-proof" aria-label="Kundenbewertungen">
-      <div class="review-card">
+    <div class="lp-hero__visual" aria-label="Produktbild und Kundenbewertung">
+      {image && (
+        <div class="lp-hero__img-wrap">
+          <img
+            src={image}
+            alt={imageAlt}
+            width="800"
+            height="600"
+            loading="eager"
+            fetchpriority="high"
+            class="lp-hero__img"
+          />
+        </div>
+      )}
+
+      <!-- Review card -->
+      <div class="review-card" class:list={[image && 'review-card--overlay']}>
         <div class="review-card__stars" aria-label="5 von 5 Sternen">
           {Array.from({ length: 5 }).map(() => (
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -219,19 +238,38 @@ const {
     background-color: rgba(255, 255, 255, 0.25);
   }
 
-  /* Social proof card */
-  .lp-hero__social-proof {
+  /* Visual column */
+  .lp-hero__visual {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
   }
 
+  /* Product image */
+  .lp-hero__img-wrap {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px oklch(100% 0 0 / 15%),
+      0 16px 48px oklch(10% 0.02 240 / 35%);
+  }
+
+  .lp-hero__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* Review card */
   .review-card {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(8px);
     border-radius: var(--radius-xl);
-    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
-    max-width: 26rem;
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
     width: 100%;
   }
 
@@ -282,12 +320,8 @@ const {
       grid-template-columns: 1fr;
     }
 
-    .lp-hero__social-proof {
+    .lp-hero__visual {
       order: -1;
-    }
-
-    .review-card {
-      max-width: 100%;
     }
   }
 </style>
