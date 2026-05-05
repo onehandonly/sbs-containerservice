@@ -39,21 +39,32 @@
 
 # Redirects: non-www → www
 [[redirects]]
-  from = "https://sbs-container.de/*"
-  to = "https://www.sbs-container.de/:splat"
+  from = "https://sbs-containerservice.de/*"
+  to = "https://www.sbs-containerservice.de/:splat"
   status = 301
   force = true
 
-# Landing pages: serve /lp/* at anfrage.sbs-container.de without the /lp/ prefix
-# e.g. anfrage.sbs-container.de/buerocontainer-kaufen → serves /lp/buerocontainer-kaufen
+# Landing pages: serve /lp/* at anfrage.sbs-containerservice.de without the /lp/ prefix
+# e.g. anfrage.sbs-containerservice.de/buerocontainer-kaufen → serves /lp/buerocontainer-kaufen
 [[redirects]]
-  from = "https://anfrage.sbs-container.de/:page"
+  from = "https://anfrage.sbs-containerservice.de/:page"
+  to = "/lp/:page"
+  status = 200
+
+[[redirects]]
+  from = "https://www.anfrage.sbs-containerservice.de/:page"
   to = "/lp/:page"
   status = 200
 
 # Redirect bare anfrage root to www
 [[redirects]]
-  from = "https://anfrage.sbs-container.de"
-  to = "https://www.sbs-container.de"
+  from = "https://anfrage.sbs-containerservice.de"
+  to = "https://www.sbs-containerservice.de"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.anfrage.sbs-containerservice.de"
+  to = "https://www.sbs-containerservice.de"
   status = 301
   force = true
