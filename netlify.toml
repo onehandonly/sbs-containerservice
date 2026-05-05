@@ -37,9 +37,23 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# Redirects: non-www → www (update if domain differs)
+# Redirects: non-www → www
 [[redirects]]
-  from = "https://sbs-containerservice.de/*"
-  to = "https://www.sbs-containerservice.de/:splat"
+  from = "https://sbs-container.de/*"
+  to = "https://www.sbs-container.de/:splat"
+  status = 301
+  force = true
+
+# Landing pages: serve /lp/* at anfrage.sbs-container.de without the /lp/ prefix
+# e.g. anfrage.sbs-container.de/buerocontainer-kaufen → serves /lp/buerocontainer-kaufen
+[[redirects]]
+  from = "https://anfrage.sbs-container.de/:page"
+  to = "/lp/:page"
+  status = 200
+
+# Redirect bare anfrage root to www
+[[redirects]]
+  from = "https://anfrage.sbs-container.de"
+  to = "https://www.sbs-container.de"
   status = 301
   force = true
