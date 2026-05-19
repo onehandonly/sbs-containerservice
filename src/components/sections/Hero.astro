@@ -36,13 +36,13 @@ const {
         >
           {ctaLabel}
         </Button>
-        <Button href="tel:+494282594650" variant="outline" size="lg">
+        <Button href="tel:+494282594650" variant="outline" size="lg" class="btn-call">
           Direkt anrufen
         </Button>
       </div>
       <ul class="hero__trust" aria-label="Vorteile">
         <li>✓ Über 25 Jahre Erfahrung</li>
-        <li>✓ Lieferung innerhalb 24h</li>
+        <li>✓ Lieferung innerhalb von 24 Stunden nach Zahlungseingang</li>
         <li>✓ Geprüfte Qualität</li>
       </ul>
     </div>
@@ -123,6 +123,18 @@ const {
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+  }
+
+  .hero__actions :global(.btn-call) {
+    padding-inline: 2.5rem;
+    padding-block: 1.25rem;
+    border-color: rgba(255, 255, 255, 0.75);
+    color: white;
+  }
+
+  .hero__actions :global(.btn-call:hover) {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
   }
 
   .hero__trust {

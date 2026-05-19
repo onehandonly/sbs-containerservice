@@ -37,34 +37,28 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# Redirects: non-www → www
+# Landing pages: serve /lp/* at anfrage.sbs-container.de without the /lp/ prefix
+# e.g. anfrage.sbs-container.de/buerocontainer-kaufen → serves /lp/buerocontainer-kaufen
 [[redirects]]
-  from = "https://sbs-containerservice.de/*"
-  to = "https://www.sbs-containerservice.de/:splat"
-  status = 301
-  force = true
+  from = "https://anfrage.sbs-container.de/:page"
+  to = "/lp/:page"
+  status = 200
 
-# Landing pages: serve /lp/* at anfrage.sbs-containerservice.de without the /lp/ prefix
-# e.g. anfrage.sbs-containerservice.de/buerocontainer-kaufen → serves /lp/buerocontainer-kaufen
+# Same for anfrage.sbs-containerservice.de
 [[redirects]]
   from = "https://anfrage.sbs-containerservice.de/:page"
   to = "/lp/:page"
   status = 200
 
+# Redirect bare anfrage root to main site
 [[redirects]]
-  from = "https://www.anfrage.sbs-containerservice.de/:page"
-  to = "/lp/:page"
-  status = 200
-
-# Redirect bare anfrage root to www
-[[redirects]]
-  from = "https://anfrage.sbs-containerservice.de"
-  to = "https://www.sbs-containerservice.de"
+  from = "https://anfrage.sbs-container.de"
+  to = "https://www.sbs-container.de"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://www.anfrage.sbs-containerservice.de"
-  to = "https://www.sbs-containerservice.de"
+  from = "https://anfrage.sbs-containerservice.de"
+  to = "https://www.sbs-container.de"
   status = 301
   force = true

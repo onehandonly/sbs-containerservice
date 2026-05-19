@@ -2,6 +2,7 @@
 import LandingLayout from '../../layouts/LandingLayout.astro';
 import LandingHero from '../../components/lp/LandingHero.astro';
 import LandingFeatures from '../../components/lp/LandingFeatures.astro';
+import Benefits from '../../components/sections/Benefits.astro';
 import LandingForm from '../../components/lp/LandingForm.astro';
 
 const gtmLabel = 'lp_buerocontainer';
@@ -48,14 +49,14 @@ const features = [
   />
 
   <LandingFeatures
-    heading="Warum SBS Bürocontainer?"
+    heading="Unsere Vorteile"
     features={features}
   />
 
   <!-- Product overview section -->
   <section class="product-info" aria-labelledby="product-heading">
     <div class="product-info__inner">
-      <h2 id="product-heading" class="product-info__heading">Bürocontainer – Modelle & Ausstattung</h2>
+      <h2 id="product-heading" class="product-info__heading">Unsere Leistungen</h2>
       <p class="product-info__sub">Alle Einheiten werden auf Wunsch individuell gestaltet. Sprechen Sie uns an.</p>
       <ul class="product-grid" role="list">
         <li class="product-card">
@@ -103,11 +104,13 @@ const features = [
     </div>
   </section>
 
+  <Benefits />
+
   <LandingForm
     ctaLabel="Jetzt Angebot anfragen"
     gtmLabel={gtmLabel}
     selectVariant="buero-nutzung"
-    formHeading="Kostenloses Angebot in 2 Minuten"
+    formHeading="Kontakt – Kostenloses Angebot"
     formSubheading="Beschreiben Sie Ihren Bedarf – wir melden uns innerhalb von 3 Stunden mit einem Festpreisangebot."
   />
 </LandingLayout>

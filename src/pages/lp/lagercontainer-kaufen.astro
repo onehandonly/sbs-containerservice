@@ -2,6 +2,7 @@
 import LandingLayout from '../../layouts/LandingLayout.astro';
 import LandingHero from '../../components/lp/LandingHero.astro';
 import LandingFeatures from '../../components/lp/LandingFeatures.astro';
+import Benefits from '../../components/sections/Benefits.astro';
 import LandingForm from '../../components/lp/LandingForm.astro';
 
 const gtmLabel = 'lp_lagercontainer';
@@ -48,14 +49,14 @@ const features = [
   />
 
   <LandingFeatures
-    heading="Warum SBS Lagercontainer?"
+    heading="Unsere Vorteile"
     features={features}
   />
 
   <!-- Product overview section -->
   <section class="product-info" aria-labelledby="product-heading">
     <div class="product-info__inner">
-      <h2 id="product-heading" class="product-info__heading">Lagercontainer – Größen & Ausstattung</h2>
+      <h2 id="product-heading" class="product-info__heading">Unsere Leistungen</h2>
       <p class="product-info__sub">Alle Einheiten mit Standardverriegelung und Doppelflügeltür. 20 Fuß und 40 Fuß auch als High Cube (+30 cm Höhe) verfügbar.</p>
       <ul class="product-grid" role="list">
         <li class="product-card">
@@ -152,11 +153,13 @@ const features = [
     </div>
   </section>
 
+  <Benefits />
+
   <LandingForm
     ctaLabel="Jetzt Angebot anfragen"
     gtmLabel={gtmLabel}
     selectVariant="lager-groesse"
-    formHeading="Kostenloses Angebot in 2 Minuten"
+    formHeading="Kontakt – Kostenloses Angebot"
     formSubheading="Teilen Sie uns Ihre gewünschte Größe mit – wir melden uns innerhalb von 3 Stunden mit einem Festpreisangebot."
   />
 </LandingLayout>
