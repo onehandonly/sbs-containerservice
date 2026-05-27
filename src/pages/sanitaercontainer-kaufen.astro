@@ -1,51 +1,51 @@
 ---
-import LandingLayout from '../../layouts/LandingLayout.astro';
-import LandingHero from '../../components/lp/LandingHero.astro';
-import LandingFeatures from '../../components/lp/LandingFeatures.astro';
-import Benefits from '../../components/sections/Benefits.astro';
-import LandingForm from '../../components/lp/LandingForm.astro';
+import LandingLayout from '../layouts/LandingLayout.astro';
+import LandingHero from '../components/lp/LandingHero.astro';
+import LandingFeatures from '../components/lp/LandingFeatures.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import LandingForm from '../components/lp/LandingForm.astro';
 
-const gtmLabel = 'lp_buerocontainer';
+const gtmLabel = 'lp_sanitaercontainer';
 
 const features = [
   {
-    icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
-    title: 'Sofort einsatzbereit',
-    body: 'Unsere Bürocontainer werden komplett eingerichtet geliefert: Strom, LED-Beleuchtung und Heizung.',
+    icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>',
+    title: 'Hygienisch & normgerecht',
+    body: 'Alle Einheiten entsprechen den geltenden Hygienevorschriften für Baustellen, Veranstaltungen und Betriebe.',
   },
   {
     icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-    title: 'Wettergeschützt & robust',
-    body: 'Hochwertige Stahlkonstruktion, wärmegedämmt und witterungsbeständig. Für Innen- und Außeneinsatz geeignet.',
+    title: 'Robust & pflegeleicht',
+    body: 'Hochwertige Kunststoff- und Stahlkonstruktion – leicht zu reinigen, langlebig und wetterfest.',
   },
   {
     icon: '<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>',
-    title: 'Flexibel kombinierbar',
-    body: 'Mehrere Einheiten lassen sich zu großen Büroflächen verbinden. Ideal für wachsende Teams und wachsende Projekte.',
+    title: 'Für jeden Bedarf',
+    body: 'WC-Container, Duschcontainer oder Kombilösungen – konfigurierbar für Baustelle, Event oder Dauereinsatz.',
   },
   {
     icon: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
-    title: 'Transparente Festpreise',
-    body: 'Kein Kleingedrucktes. Unser Angebot gilt ab Anfrage – inklusive Lieferung und Aufstellung.',
+    title: 'Festpreise ohne Überraschungen',
+    body: 'Verbindliches Angebot nach Ihrer Anfrage. Lieferung und Aufstellung inklusive.',
   },
 ];
 ---
 
 <LandingLayout
-  title="Bürocontainer kaufen – sofort verfügbar | SBS Container GmbH"
-  description="Bürocontainer kaufen: robust, wärmegedämmt, sofort einsatzbereit. Faire Festpreise, schnelle Lieferung. Jetzt kostenloses Angebot anfragen!"
-  canonical="https://anfrage.sbs-containerservice.de/buerocontainer-kaufen"
-  lcpImage="/img/buerocontainer.jpg"
+  title="Sanitärcontainer kaufen – hygienisch & kurzfristig lieferbar | SBS Container GmbH"
+  description="Sanitärcontainer kaufen: WC, Dusche, Vollausstattung. Für Baustellen, Veranstaltungen und Betriebe. Jetzt kostenloses Angebot anfragen!"
+  canonical="https://anfrage.sbs-container.de/sanitaercontainer-kaufen"
+  lcpImage="/img/sanitaercontainer.jpg"
 >
   <LandingHero
-    headline="Bürocontainer kaufen – robust, flexibel, sofort einsatzbereit"
-    subline="Hochwertige Bürocontainer für Baustellen, Büros und Veranstaltungen."
+    headline="Sanitärcontainer kaufen – hygienisch, robust, kurzfristig lieferbar"
+    subline="Sanitärcontainer. In verschiedenen Varianten, passend zu den Anforderungen – als neu oder gebraucht Container."
     ctaLabel="Jetzt Angebot anfragen"
     ctaHref="#anfrage"
     gtmLabel={gtmLabel}
     badge="Kostenlos & unverbindlich"
-    image="/img/buerocontainer.jpg"
-    imageAlt="SBS Bürocontainer – sofort einsatzbereit"
+    image="/img/sanitaercontainer.jpg"
+    imageAlt="SBS Sanitärcontainer – hygienisch und sofort lieferbar"
   />
 
   <LandingFeatures
@@ -57,46 +57,47 @@ const features = [
   <section class="product-info" aria-labelledby="product-heading">
     <div class="product-info__inner">
       <h2 id="product-heading" class="product-info__heading">Unsere Leistungen</h2>
-      <p class="product-info__sub">Alle Einheiten werden auf Wunsch individuell gestaltet. Sprechen Sie uns an.</p>
+      <p class="product-info__sub">Alle Einheiten mit Warmwasser-Aufbereitung, LED-Beleuchtung, Belüftung und 32 A-Anschluss.</p>
       <ul class="product-grid" role="list">
         <li class="product-card">
-          <span class="product-card__size">10 Fuß</span>
-          <span class="product-card__use">Einzelbüro, ca. 9 m²</span>
+          <span class="product-card__size">WC</span>
+          <span class="product-card__use">WC-Container</span>
           <ul class="product-card__features">
-            <li>Schreibtisch & Stuhl</li>
-            <li>LED-Beleuchtung</li>
-            <li>Heizung & Lüftung</li>
+            <li>Trennkabinen</li>
+            <li>Mit oder ohne Urinal</li>
+            <li>Waschbecken</li>
+            <li>Seifenspender & Spiegel</li>
+          </ul>
+          <span class="product-card__cta">Preis auf Anfrage</span>
+        </li>
+        <li class="product-card">
+          <span class="product-card__size">Dusche</span>
+          <span class="product-card__use">Duschcontainer</span>
+          <ul class="product-card__features">
+            <li>Einzelkabinen oder Reihenanlage</li>
+            <li>Warmwasser inklusive</li>
+            <li>Robuste Ausstattung</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
         <li class="product-card product-card--featured">
-          <span class="product-card__badge">Beliebt</span>
-          <span class="product-card__size">20 Fuß</span>
-          <span class="product-card__use">Teambüro, ca. 15 m²</span>
+          <span class="product-card__badge">Meistgewählt</span>
+          <span class="product-card__size">WC + Dusche</span>
+          <span class="product-card__use">Kombination</span>
           <ul class="product-card__features">
-            <li>2–4 Arbeitsplätze</li>
-            <li>Isolierverglasung</li>
-            <li>Elektroinstallation</li>
+            <li>WC-Kabinen & Duschkabinen</li>
+            <li>Warmwasser inklusive</li>
+            <li>Ideal für Baustellen</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
         <li class="product-card">
-          <span class="product-card__size">Kombination</span>
-          <span class="product-card__use">Mehrere Einheiten</span>
+          <span class="product-card__size">Vollausstattung</span>
+          <span class="product-card__use">Komplett-Sanitär</span>
           <ul class="product-card__features">
-            <li>Individuell konfigurierbar</li>
-            <li>Innenverbindung möglich</li>
-            <li>Für größere Teams</li>
-          </ul>
-          <span class="product-card__cta">Preis auf Anfrage</span>
-        </li>
-        <li class="product-card product-card--wide">
-          <span class="product-card__size">Bauleiter-Container</span>
-          <span class="product-card__use">Büro mit integriertem Sanitärbereich</span>
-          <ul class="product-card__features">
-            <li>Büro + WC-Abteil + Kleinküche</li>
-            <li>Ideal auch für Baustellen ohne Sanitäranschluss</li>
-            <li>Mit unseren Fäkalien-Tanks autark nutzbar</li>
+            <li>WC, Dusche, Waschbecken</li>
+            <li>Getrennte Damen/Herren</li>
+            <li>Für Events & Dauerbetrieb</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
@@ -109,9 +110,9 @@ const features = [
   <LandingForm
     ctaLabel="Jetzt Angebot anfragen"
     gtmLabel={gtmLabel}
-    selectVariant="buero-nutzung"
+    selectVariant="sanitaer-ausstattung"
     formHeading="Kontakt – Kostenloses Angebot"
-    formSubheading="Beschreiben Sie Ihren Bedarf – wir melden uns innerhalb von 3 Stunden mit einem Festpreisangebot."
+    formSubheading="Teilen Sie uns Ihre gewünschte Ausstattung mit – wir melden uns innerhalb von 3 Stunden mit einem Festpreisangebot."
   />
 </LandingLayout>
 
@@ -146,7 +147,7 @@ const features = [
   .product-grid {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
     max-width: 56rem;
     margin-inline: auto;
@@ -187,7 +188,7 @@ const features = [
   }
 
   .product-card__size {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 900;
     color: var(--color-brand-primary);
     line-height: 1;
@@ -213,14 +214,6 @@ const features = [
     font-weight: 700;
     color: var(--color-brand-accent);
     margin-top: 0.5rem;
-  }
-
-  .product-card--wide {
-    grid-column: 1 / -1;
-    max-width: 36rem;
-    margin-inline: auto;
-    background-color: color-mix(in srgb, var(--color-brand-accent) 5%, white);
-    border-color: var(--color-brand-accent);
   }
 
   @media (max-width: 640px) {

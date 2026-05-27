@@ -1,51 +1,51 @@
 ---
-import LandingLayout from '../../layouts/LandingLayout.astro';
-import LandingHero from '../../components/lp/LandingHero.astro';
-import LandingFeatures from '../../components/lp/LandingFeatures.astro';
-import Benefits from '../../components/sections/Benefits.astro';
-import LandingForm from '../../components/lp/LandingForm.astro';
+import LandingLayout from '../layouts/LandingLayout.astro';
+import LandingHero from '../components/lp/LandingHero.astro';
+import LandingFeatures from '../components/lp/LandingFeatures.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import LandingForm from '../components/lp/LandingForm.astro';
 
-const gtmLabel = 'lp_sanitaercontainer';
+const gtmLabel = 'lp_wohncontainer';
 
 const features = [
   {
-    icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>',
-    title: 'Hygienisch & normgerecht',
-    body: 'Alle Einheiten entsprechen den geltenden Hygienevorschriften für Baustellen, Veranstaltungen und Betriebe.',
+    icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    title: 'Wohnkomfort auf kleinem Raum',
+    body: 'Unsere Wohncontainer bieten vollwertige Wohnlösungen mit Küche, Bad und Schlafbereich – sofort bezugsfertig.',
   },
   {
     icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-    title: 'Robust & pflegeleicht',
-    body: 'Hochwertige Kunststoff- und Stahlkonstruktion – leicht zu reinigen, langlebig und wetterfest.',
+    title: 'Wärmegedämmt & wetterfest',
+    body: 'Hochwertige Isolierung sorgt für angenehmes Raumklima zu jeder Jahreszeit. Robuste Stahlkonstruktion für dauerhaften Einsatz.',
   },
   {
     icon: '<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>',
-    title: 'Für jeden Bedarf',
-    body: 'WC-Container, Duschcontainer oder Kombilösungen – konfigurierbar für Baustelle, Event oder Dauereinsatz.',
+    title: 'Flexibel erweiterbar',
+    body: 'Einzelmodule oder Kombinationen – passen Sie den Wohnraum an Ihre Bedürfnisse an. Ideal für temporäre und dauerhafte Nutzung.',
   },
   {
     icon: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
-    title: 'Festpreise ohne Überraschungen',
-    body: 'Verbindliches Angebot nach Ihrer Anfrage. Lieferung und Aufstellung inklusive.',
+    title: 'Transparente Festpreise',
+    body: 'Kein Kleingedrucktes. Festpreis ab Anfrage – inklusive Lieferung und Aufstellung vor Ort.',
   },
 ];
 ---
 
 <LandingLayout
-  title="Sanitärcontainer kaufen – hygienisch & kurzfristig lieferbar | SBS Container GmbH"
-  description="Sanitärcontainer kaufen: WC, Dusche, Vollausstattung. Für Baustellen, Veranstaltungen und Betriebe. Jetzt kostenloses Angebot anfragen!"
-  canonical="https://anfrage.sbs-containerservice.de/sanitaercontainer-kaufen"
-  lcpImage="/img/sanitaercontainer.jpg"
+  title="Wohncontainer kaufen – sofort bezugsfertig | SBS Container GmbH"
+  description="Wohncontainer kaufen: wärmegedämmt, komplett ausgestattet, sofort bezugsfertig. Faire Festpreise, schnelle Lieferung. Jetzt kostenloses Angebot anfragen!"
+  canonical="https://anfrage.sbs-container.de/wohncontainer-kaufen"
+  lcpImage="/img/buerocontainer-perspektive.png"
 >
   <LandingHero
-    headline="Sanitärcontainer kaufen – hygienisch, robust, kurzfristig lieferbar"
-    subline="Sanitärcontainer. In verschiedenen Varianten, passend zu den Anforderungen – als neu oder gebraucht Container."
+    headline="Wohncontainer kaufen – komfortabel, flexibel, sofort bezugsfertig"
+    subline="Hochwertige Wohncontainer für temporäres Wohnen, Unterkünfte für Mitarbeiter und als flexible Raumlösungen."
     ctaLabel="Jetzt Angebot anfragen"
     ctaHref="#anfrage"
     gtmLabel={gtmLabel}
     badge="Kostenlos & unverbindlich"
-    image="/img/sanitaercontainer.jpg"
-    imageAlt="SBS Sanitärcontainer – hygienisch und sofort lieferbar"
+    image="/img/buerocontainer-perspektive.png"
+    imageAlt="SBS Wohncontainer – wärmegedämmt und komfortabel"
   />
 
   <LandingFeatures
@@ -57,47 +57,26 @@ const features = [
   <section class="product-info" aria-labelledby="product-heading">
     <div class="product-info__inner">
       <h2 id="product-heading" class="product-info__heading">Unsere Leistungen</h2>
-      <p class="product-info__sub">Alle Einheiten mit Warmwasser-Aufbereitung, LED-Beleuchtung, Belüftung und 32 A-Anschluss.</p>
+      <p class="product-info__sub">Alle Einheiten werden auf Wunsch individuell ausgestattet. Sprechen Sie uns an.</p>
       <ul class="product-grid" role="list">
-        <li class="product-card">
-          <span class="product-card__size">WC</span>
-          <span class="product-card__use">WC-Container</span>
-          <ul class="product-card__features">
-            <li>Trennkabinen</li>
-            <li>Mit oder ohne Urinal</li>
-            <li>Waschbecken</li>
-            <li>Seifenspender & Spiegel</li>
-          </ul>
-          <span class="product-card__cta">Preis auf Anfrage</span>
-        </li>
-        <li class="product-card">
-          <span class="product-card__size">Dusche</span>
-          <span class="product-card__use">Duschcontainer</span>
-          <ul class="product-card__features">
-            <li>Einzelkabinen oder Reihenanlage</li>
-            <li>Warmwasser inklusive</li>
-            <li>Robuste Ausstattung</li>
-          </ul>
-          <span class="product-card__cta">Preis auf Anfrage</span>
-        </li>
         <li class="product-card product-card--featured">
-          <span class="product-card__badge">Meistgewählt</span>
-          <span class="product-card__size">WC + Dusche</span>
-          <span class="product-card__use">Kombination</span>
+          <span class="product-card__badge">Beliebt</span>
+          <span class="product-card__size">20 Fuß</span>
+          <span class="product-card__use">Wohneinheit, ca. 15 m²</span>
           <ul class="product-card__features">
-            <li>WC-Kabinen & Duschkabinen</li>
-            <li>Warmwasser inklusive</li>
-            <li>Ideal für Baustellen</li>
+            <li>Wohn- & Schlafbereich</li>
+            <li>Küchenzeile möglich</li>
+            <li>Sanitärbereich optional</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
         <li class="product-card">
-          <span class="product-card__size">Vollausstattung</span>
-          <span class="product-card__use">Komplett-Sanitär</span>
+          <span class="product-card__size">Kombination</span>
+          <span class="product-card__use">Mehrere Einheiten</span>
           <ul class="product-card__features">
-            <li>WC, Dusche, Waschbecken</li>
-            <li>Getrennte Damen/Herren</li>
-            <li>Für Events & Dauerbetrieb</li>
+            <li>Individuell konfigurierbar</li>
+            <li>Innenverbindung möglich</li>
+            <li>Gemeinschaftsräume</li>
           </ul>
           <span class="product-card__cta">Preis auf Anfrage</span>
         </li>
@@ -110,9 +89,9 @@ const features = [
   <LandingForm
     ctaLabel="Jetzt Angebot anfragen"
     gtmLabel={gtmLabel}
-    selectVariant="sanitaer-ausstattung"
+    selectVariant="wohn-groesse"
     formHeading="Kontakt – Kostenloses Angebot"
-    formSubheading="Teilen Sie uns Ihre gewünschte Ausstattung mit – wir melden uns innerhalb von 3 Stunden mit einem Festpreisangebot."
+    formSubheading="Teilen Sie uns Ihre gewünschte Größe mit – wir melden uns innerhalb von 3 Stunden mit einem Festpreisangebot."
   />
 </LandingLayout>
 
@@ -147,9 +126,9 @@ const features = [
   .product-grid {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
-    max-width: 56rem;
+    max-width: 42rem;
     margin-inline: auto;
   }
 
@@ -188,7 +167,7 @@ const features = [
   }
 
   .product-card__size {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 900;
     color: var(--color-brand-primary);
     line-height: 1;
