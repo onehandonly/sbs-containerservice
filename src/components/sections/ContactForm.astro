@@ -55,15 +55,20 @@ const { phone = '+49 (0) 4282 594650' } = Astro.props;
       class="contact__form"
       name="anfrage"
       method="POST"
-      action="/danke"
-      data-netlify="true"
-      netlify-honeypot="_gotcha"
+      action="https://api.web3forms.com/submit"
+      data-web3forms
+      data-gtm-form="contact_form"
       data-gtm-event="form_submit"
       data-gtm-label="contact_form"
-      novalidate
     >
-      <!-- Honeypot anti-spam -->
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <!-- Web3Forms: Anfragen gehen an info@sbs-container.de -->
+      <input type="hidden" name="access_key" value="91543341-0693-4017-8311-5600372de99d" />
+      <input type="hidden" name="subject" value="Neue Anfrage - Kontaktformular (sbs-container.de)" />
+      <input type="hidden" name="from_name" value="SBS Containerservice - Website" />
+      <input type="hidden" name="redirect" value="https://anfrage.sbs-container.de/danke" />
+      <input type="hidden" name="source" value="contact_form" />
+      <!-- Honeypot anti-spam (Web3Forms) -->
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <div class="form-row">
         <div class="form-field">
@@ -170,6 +175,10 @@ const { phone = '+49 (0) 4282 594650' } = Astro.props;
     </form>
   </div>
 </section>
+
+<script>
+  import '../../scripts/web3forms.ts';
+</script>
 
 <style>
   .contact {

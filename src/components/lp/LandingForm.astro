@@ -110,15 +110,18 @@ const selectConfig = {
       class="lp-form"
       name="lp-anfrage"
       method="POST"
-      action="/danke"
-      data-netlify="true"
-      netlify-honeypot="_gotcha"
+      action="https://api.web3forms.com/submit"
+      data-web3forms
       data-gtm-form={gtmLabel}
-      novalidate
       aria-label="Angebotsanfrage"
     >
-      <!-- Honeypot anti-spam -->
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <!-- Web3Forms: Anfragen gehen an info@sbs-container.de -->
+      <input type="hidden" name="access_key" value="91543341-0693-4017-8311-5600372de99d" />
+      <input type="hidden" name="subject" value={`Neue Anfrage - ${gtmLabel}`} />
+      <input type="hidden" name="from_name" value="SBS Containerservice - Landingpage" />
+      <input type="hidden" name="redirect" value="https://anfrage.sbs-container.de/danke" />
+      <!-- Honeypot anti-spam (Web3Forms) -->
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <!-- Identify which LP this came from -->
       <input type="hidden" name="source" value={gtmLabel} />
 
@@ -169,6 +172,18 @@ const selectConfig = {
           autocomplete="tel"
           placeholder="+49 123 456789"
           aria-required="true"
+        />
+      </div>
+
+      <div class="lp-form__field">
+        <label for="lp-email" class="lp-form__label">E-Mail</label>
+        <input
+          type="email"
+          id="lp-email"
+          name="email"
+          class="lp-form__input"
+          autocomplete="email"
+          placeholder="name@firma.de"
         />
       </div>
 
@@ -279,6 +294,10 @@ const selectConfig = {
     </form>
   </div>
 </section>
+
+<script>
+  import '../../scripts/web3forms.ts';
+</script>
 
 <style>
   .lp-form-section {
