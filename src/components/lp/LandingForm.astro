@@ -1,5 +1,5 @@
 ---
-type SelectVariant = 'container-typ' | 'buero-nutzung' | 'lager-groesse' | 'sanitaer-ausstattung' | 'wohn-groesse';
+type SelectVariant = 'container-typ' | 'buero-nutzung' | 'lager-groesse' | 'sanitaer-ausstattung' | 'wohn-groesse' | 'anlagen-modul';
 
 interface Props {
   ctaLabel: string;
@@ -72,12 +72,23 @@ const wohnGroessen = [
   { value: 'sonstiges', label: 'Sonstiges / nicht sicher' },
 ];
 
+const anlagenModule = [
+  { value: '', label: 'Module wählen …' },
+  { value: 'buero-sanitaer', label: 'Büro + Sanitär' },
+  { value: 'buero-lager', label: 'Büro + Lager' },
+  { value: 'buero-sanitaer-lager', label: 'Büro + Sanitär + Lager' },
+  { value: 'mehrere-buero', label: 'Mehrere Büroeinheiten' },
+  { value: 'individuell', label: 'Individuelle Kombination' },
+  { value: 'unklar', label: 'Noch nicht sicher' },
+];
+
 const selectConfig = {
   'container-typ': { id: 'lp-container-typ', name: 'container_typ', label: 'Container-Typ', options: containerTypen },
   'buero-nutzung': { id: 'lp-buero-nutzung', name: 'buero_nutzung', label: 'Nutzungszweck', options: bueroNutzungen },
   'lager-groesse': { id: 'lp-lager-groesse', name: 'lager_groesse', label: 'Gewünschte Größe', options: lagerGroessen },
   'sanitaer-ausstattung': { id: 'lp-sanitaer-ausstattung', name: 'sanitaer_ausstattung', label: 'Ausstattung', options: sanitaerAusstattungen },
   'wohn-groesse': { id: 'lp-wohn-groesse', name: 'wohn_groesse', label: 'Gewünschte Größe', options: wohnGroessen },
+  'anlagen-modul': { id: 'lp-anlagen-modul', name: 'anlagen_modul', label: 'Welche Module brauchen Sie?', options: anlagenModule },
 }[selectVariant];
 ---
 
