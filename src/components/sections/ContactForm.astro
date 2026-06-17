@@ -145,6 +145,21 @@ const { phone = '+49 (0) 4282 594650' } = Astro.props;
       </div>
 
       <div class="form-field">
+        <label for="land" class="form-label">Land</label>
+        <input
+          type="text"
+          id="land"
+          name="land"
+          class="form-input form-input--readonly"
+          value="Deutschland"
+          readonly
+          tabindex="-1"
+          aria-readonly="true"
+          autocomplete="country-name"
+        />
+      </div>
+
+      <div class="form-field">
         <label for="message" class="form-label">Nachricht <span aria-hidden="true">*</span></label>
         <textarea
           id="message"
@@ -152,8 +167,7 @@ const { phone = '+49 (0) 4282 594650' } = Astro.props;
           class="form-input form-textarea"
           required
           rows="4"
-          placeholder="Beschreiben Sie kurz Ihr Vorhaben: Containertyp, Anzahl, Lieferadresse …"
-        ></textarea>
+        >Sehr geehrtes SBS Team, ich interessiere mich für ...</textarea>
       </div>
 
       <div class="form-field form-privacy">
@@ -298,6 +312,11 @@ const { phone = '+49 (0) 4282 594650' } = Astro.props;
     transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
     appearance: none;
     -webkit-appearance: none;
+  }
+
+  .form-input--readonly {
+    color: var(--color-text-muted);
+    cursor: not-allowed;
   }
 
   .form-input:focus-visible {

@@ -21,6 +21,14 @@ const {
 // Landing pages get their own canonical, explicitly set — never inherit homepage
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 
+// Derive MIME type from image extension for the preload hint (browsers may skip preloads of formats they can't verify)
+const lcpImageType =
+  lcpImage?.endsWith('.avif') ? 'image/avif' :
+  lcpImage?.endsWith('.webp') ? 'image/webp' :
+  lcpImage?.endsWith('.png')  ? 'image/png'  :
+  lcpImage?.match(/\.jpe?g$/) ? 'image/jpeg' :
+  undefined;
+
 const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
 const gadsConversionId = import.meta.env.PUBLIC_GADS_CONVERSION_ID ?? '';
 const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
@@ -40,7 +48,7 @@ const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
     <!-- Non-blocking font load -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800&display=swap" /></noscript>
-    {lcpImage && <link rel="preload" href={lcpImage} as="image" fetchpriority="high" />}
+    {lcpImage && <link rel="preload" href={lcpImage} as="image" type={lcpImageType} fetchpriority="high" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />

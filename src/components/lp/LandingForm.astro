@@ -11,6 +11,8 @@ interface Props {
   /** Heading for the form section */
   formHeading?: string;
   formSubheading?: string;
+  /** Container type for the prefilled message (e.g. "einen Bürocontainer") */
+  containerLabel?: string;
 }
 
 const {
@@ -20,7 +22,10 @@ const {
   showFirmaField = false,
   formHeading = 'Jetzt kostenloses Angebot anfragen',
   formSubheading = 'Antwort in der Regel innerhalb von 3 Stunden – auch samstags.',
+  containerLabel = '...',
 } = Astro.props;
+
+const nachrichtDefault = `Sehr geehrtes SBS Team, ich interessiere mich für ${containerLabel}.`;
 
 const containerTypen = [
   { value: '', label: 'Container-Typ wählen …' },
@@ -267,6 +272,31 @@ const selectConfig = {
         />
       </div>
 
+      <div class="lp-form__field">
+        <label for="lp-land" class="lp-form__label">Land</label>
+        <input
+          type="text"
+          id="lp-land"
+          name="land"
+          class="lp-form__input lp-form__input--readonly"
+          value="Deutschland"
+          readonly
+          tabindex="-1"
+          aria-readonly="true"
+          autocomplete="country-name"
+        />
+      </div>
+
+      <div class="lp-form__field">
+        <label for="lp-nachricht" class="lp-form__label">Nachricht</label>
+        <textarea
+          id="lp-nachricht"
+          name="nachricht"
+          class="lp-form__input lp-form__textarea"
+          rows="4"
+        >{nachrichtDefault}</textarea>
+      </div>
+
       <div class="lp-form__privacy">
         <label class="lp-form__checkbox-label">
           <input type="checkbox" name="privacy" required class="lp-form__checkbox" aria-required="true" />
@@ -413,6 +443,18 @@ const selectConfig = {
     background-position: right 0.75rem center;
     padding-right: 2.5rem;
     cursor: pointer;
+  }
+
+  .lp-form__input--readonly {
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+  }
+
+  .lp-form__textarea {
+    min-height: 7rem;
+    resize: vertical;
+    line-height: 1.5;
+    font-family: inherit;
   }
 
   .lp-form__hint {
