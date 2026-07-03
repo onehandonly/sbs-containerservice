@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://anfrage.sbs-containerservice.de',
+  site: 'https://anfrage.sbs-container.de',
   base: '/',
   output: 'static',
   integrations: [
