@@ -29,7 +29,9 @@ const lcpImageType =
   lcpImage?.match(/\.jpe?g$/) ? 'image/jpeg' :
   undefined;
 
-const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
+// GTM container ID — overridable via PUBLIC_GTM_ID env variable.
+// Defaults to the production container in prod builds, left empty in dev.
+const gtmId = import.meta.env.PUBLIC_GTM_ID || (import.meta.env.PROD ? 'GTM-KRHWHQ22' : '');
 const gadsConversionId = import.meta.env.PUBLIC_GADS_CONVERSION_ID ?? '';
 const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
 ---
