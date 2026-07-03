@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sbs-containerservice.de/sitemap-index.xml
+Sitemap: https://anfrage.sbs-container.de/sitemap-index.xml
