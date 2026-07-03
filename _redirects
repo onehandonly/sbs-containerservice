@@ -1,6 +1,0 @@
-# Landing pages: serve without /lp/ prefix at the root path
-# Works for any domain pointing to this Netlify site
-/buerocontainer-kaufen   /lp/buerocontainer-kaufen   200
-/lagercontainer-kaufen   /lp/lagercontainer-kaufen   200
-/sanitaercontainer-kaufen /lp/sanitaercontainer-kaufen 200
-/wohncontainer-kaufen    /lp/wohncontainer-kaufen    200
