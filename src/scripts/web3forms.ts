@@ -32,7 +32,7 @@ function bind(form: HTMLFormElement): void {
       const data = await response.json().catch(() => ({}));
 
       if (response.ok && data.success) {
-        window.location.assign('/danke');
+        window.location.assign('/danke?submitted=1');
         return;
       }
       throw new Error(data?.message || 'submit_failed');
