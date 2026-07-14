@@ -1,0 +1,226 @@
+---
+/**
+ * Cookie consent banner (Google Consent Mode v2).
+ *
+ * Presents an equal-weight accept / reject choice, updates the consent state via
+ * the `window.gtag` shim defined in <ConsentMode /> and persists the decision to
+ * localStorage so it is not shown again. Reject is as easy as accept (both are
+ * single-click buttons of equal prominence) to satisfy GDPR/TDDDG.
+ *
+ * A link marked `data-consent-reopen` anywhere on the page re-opens the banner so
+ * visitors can change their choice later (e.g. from the footer).
+ */
+const privacyUrl =
+  'https://sbs-container.de/wp-content/uploads/2025/11/Datenschutzerklaerung_SBS-Containerservice-GmbH.pdf';
+---
+
+<div
+  id="sbs-cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="sbs-cookie-title"
+  aria-describedby="sbs-cookie-text"
+  hidden
+>
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__copy">
+      <h2 id="sbs-cookie-title" class="cookie-banner__title">Datenschutz-Einstellungen</h2>
+      <p id="sbs-cookie-text" class="cookie-banner__text">
+        Wir verwenden Cookies und ähnliche Technologien, um unsere Website zu
+        analysieren und Marketing (z. B. Google Analytics, Google Ads) zu
+        ermöglichen. Diese werden nur mit Ihrer Einwilligung gesetzt. Sie können
+        Ihre Auswahl jederzeit widerrufen. Weitere Informationen in unserer
+        <a href={privacyUrl} target="_blank" rel="noopener">Datenschutzerklärung</a>.
+      </p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-consent="reject">
+        Nur notwendige
+      </button>
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" data-consent="accept">
+        Alle akzeptieren
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'sbs-consent';
+    var banner = document.getElementById('sbs-cookie-banner');
+    if (!banner) return;
+
+    function gtag() {
+      window.dataLayer = window.dataLayer || [];
+      if (window.gtag) return window.gtag.apply(window, arguments);
+      window.dataLayer.push(arguments);
+    }
+
+    function save(status) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ status: status, ts: Date.now() }));
+      } catch (e) {}
+    }
+
+    function hasChoice() {
+      try {
+        return !!JSON.parse(localStorage.getItem(KEY) || 'null');
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function show() {
+      banner.hidden = false;
+    }
+    function hide() {
+      banner.hidden = true;
+    }
+
+    function accept() {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted',
+        personalization_storage: 'granted',
+        functionality_storage: 'granted',
+      });
+      save('granted');
+      hide();
+    }
+
+    function reject() {
+      gtag('consent', 'update', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        personalization_storage: 'denied',
+        functionality_storage: 'denied',
+      });
+      save('denied');
+      hide();
+    }
+
+    banner.querySelector('[data-consent="accept"]').addEventListener('click', accept);
+    banner.querySelector('[data-consent="reject"]').addEventListener('click', reject);
+
+    // Footer / anywhere link to re-open the banner and change the decision.
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest && e.target.closest('[data-consent-reopen]');
+      if (trigger) {
+        e.preventDefault();
+        show();
+      }
+    });
+
+    if (!hasChoice()) show();
+  })();
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 10000;
+    background-color: var(--color-surface, #fff);
+    border-top: 1px solid var(--color-border, #ddd);
+    box-shadow: 0 -4px 24px oklch(0% 0 0 / 0.12);
+    padding: var(--space-gap, 1rem);
+    animation: cookie-banner-in var(--duration-normal, 300ms) var(--ease-out-expo, ease-out);
+  }
+
+  @keyframes cookie-banner-in {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cookie-banner { animation: none; }
+  }
+
+  .cookie-banner__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-gap, 1.5rem);
+    flex-wrap: wrap;
+  }
+
+  .cookie-banner__copy {
+    flex: 1 1 22rem;
+  }
+
+  .cookie-banner__title {
+    font-size: var(--text-base, 1rem);
+    font-weight: 700;
+    color: var(--color-text, #1a1a1a);
+    margin-bottom: 0.25rem;
+  }
+
+  .cookie-banner__text {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-text-muted, #555);
+    line-height: 1.5;
+  }
+
+  .cookie-banner__text a {
+    color: var(--color-brand-primary, #1a528e);
+    text-decoration: underline;
+  }
+
+  .cookie-banner__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .cookie-banner__btn {
+    font: inherit;
+    font-weight: 600;
+    font-size: var(--text-sm, 0.875rem);
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--radius-md, 0.5rem);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: opacity var(--duration-fast, 150ms), background-color var(--duration-fast, 150ms);
+  }
+
+  .cookie-banner__btn--primary {
+    background-color: var(--color-brand-primary, #1a528e);
+    color: #fff;
+  }
+
+  .cookie-banner__btn--primary:hover {
+    opacity: 0.9;
+  }
+
+  .cookie-banner__btn--ghost {
+    background-color: transparent;
+    color: var(--color-text, #1a1a1a);
+    border-color: var(--color-border, #ccc);
+  }
+
+  .cookie-banner__btn--ghost:hover {
+    background-color: var(--color-surface-alt, #eee);
+  }
+
+  .cookie-banner__btn:focus-visible {
+    outline: 2px solid var(--color-brand-primary, #1a528e);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .cookie-banner__actions {
+      width: 100%;
+    }
+    .cookie-banner__btn {
+      flex: 1;
+    }
+  }
+</style>

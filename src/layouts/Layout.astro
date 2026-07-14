@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import ConsentMode from '../components/ConsentMode.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
   title: string;
@@ -110,6 +112,9 @@ const localBusinessSchema = {
 
     <title>{title}</title>
 
+    <!-- Google Consent Mode v2 default — MUST run before GTM loads -->
+    {gtmId && <ConsentMode />}
+
     <!-- Google Tag Manager — injected only when GTM_ID is configured -->
     {gtmId && (
       <script is:inline define:vars={{ gtmId }}>
@@ -137,6 +142,9 @@ const localBusinessSchema = {
 
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     <slot />
+
+    <!-- Cookie consent banner — flips Consent Mode v2 to granted on opt-in -->
+    {gtmId && <CookieBanner />}
 
     <!-- Analytics event bridge: pushes dataLayer events for GTM triggers -->
     <script src="../scripts/analytics.ts"></script>

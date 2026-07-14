@@ -1,0 +1,53 @@
+---
+/**
+ * Google Consent Mode v2 — default consent state.
+ *
+ * MUST be rendered in <head> BEFORE the Google Tag Manager / gtag loader so the
+ * `default` (denied) command is queued before any tag can fire. Without this,
+ * GTM loads with no consent signal and Google reports "missing consent for EEA
+ * users" (Container-Qualität → Maßnahme erforderlich).
+ *
+ * Defaults deny all non-essential storage. A previously stored choice is replayed
+ * as a consent `update` so returning visitors keep their decision. The banner in
+ * <CookieBanner /> is what flips the state to granted on user interaction.
+ */
+---
+
+<script is:inline>
+  (function () {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    // Expose the same gtag shim the banner uses to send consent updates.
+    window.gtag = window.gtag || gtag;
+
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+      security_storage: 'granted',
+      wait_for_update: 500,
+    });
+    // Redact ad click identifiers and pass them through the URL until consent.
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+
+    // Replay a stored decision so returning visitors are not re-prompted and
+    // tags fire immediately on their next visit.
+    try {
+      var stored = JSON.parse(localStorage.getItem('sbs-consent') || 'null');
+      if (stored && stored.status === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted',
+          personalization_storage: 'granted',
+          functionality_storage: 'granted',
+        });
+      }
+    } catch (e) {}
+  })();
+</script>
