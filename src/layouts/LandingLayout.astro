@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import ConsentMode from '../components/ConsentMode.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
   title: string;
@@ -63,6 +65,9 @@ const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
     {ogImage && <meta property="og:image" content={ogImage} />}
 
     <title>{title}</title>
+
+    <!-- Google Consent Mode v2 default — MUST run before GTM / gtag loads -->
+    {(gtmId || gadsConversionId) && <ConsentMode />}
 
     <!-- Google Tag Manager -->
     {gtmId && (
@@ -131,10 +136,14 @@ const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
           <ul class="lp-footer__links" role="list">
             <li><a href="https://sbs-container.de/impressum/" target="_blank" rel="noopener">Impressum</a></li>
             <li><a href="https://sbs-container.de/wp-content/uploads/2025/11/Datenschutzerklaerung_SBS-Containerservice-GmbH.pdf" target="_blank" rel="noopener">Datenschutz</a></li>
+            <li><a href="#" data-consent-reopen>Cookie-Einstellungen</a></li>
           </ul>
         </nav>
       </div>
     </footer>
+
+    <!-- Cookie consent banner — flips Consent Mode v2 to granted on opt-in -->
+    {(gtmId || gadsConversionId) && <CookieBanner />}
 
     <!-- Analytics event bridge -->
     <script src="../scripts/analytics.ts"></script>
