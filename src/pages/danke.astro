@@ -4,6 +4,13 @@ import Header from '../components/ui/Header.astro';
 import Footer from '../components/ui/Footer.astro';
 
 const phone = import.meta.env.PUBLIC_PHONE ?? '+49 (0) 4282 594650';
+
+// Google Ads conversion — fires here because every form redirects to /danke on
+// success. Values overridable via env; fall back to the production conversion
+// action ("Kontakt Anfrage Website") in prod builds.
+const gadsId = import.meta.env.PUBLIC_GADS_CONVERSION_ID || (import.meta.env.PROD ? 'AW-1071942676' : '');
+const gadsLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL || (import.meta.env.PROD ? 'E11hCL_a7ZsYEJSYkv8D' : '');
+const gadsSendTo = gadsId && gadsLabel ? `${gadsId}/${gadsLabel}` : '';
 ---
 
 <Layout
@@ -12,6 +19,29 @@ const phone = import.meta.env.PUBLIC_PHONE ?? '+49 (0) 4282 594650';
   index={false}
 >
   <Header phone={phone} />
+
+  {gadsSendTo && (
+    <!-- Konversion nur nach echtem Formular-Versand (?submitted=1); Consent Mode gilt weiter -->
+    <script is:inline define:vars={{ gadsId, gadsSendTo }}>
+      if (new URLSearchParams(window.location.search).has('submitted')) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        var g = window.gtag || gtag;
+        // Google-Ads-Tag laden, falls es nicht ohnehin über GTM geladen wird.
+        if (!document.querySelector('script[data-gads-conv]')) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gadsId;
+          s.setAttribute('data-gads-conv', '1');
+          document.head.appendChild(s);
+          g('js', new Date());
+          g('config', gadsId);
+        }
+        g('event', 'conversion', { send_to: gadsSendTo });
+        g('event', 'generate_lead');
+      }
+    </script>
+  )}
 
   <main id="main-content">
     <section class="thankyou" aria-labelledby="thankyou-heading">
