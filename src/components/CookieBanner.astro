@@ -88,6 +88,8 @@ const privacyUrl =
         functionality_storage: 'granted',
       });
       save('granted');
+      // Let consent-dependent features (e.g. call tracking) react immediately.
+      window.dispatchEvent(new CustomEvent('sbs-consent-changed', { detail: 'granted' }));
       hide();
     }
 
