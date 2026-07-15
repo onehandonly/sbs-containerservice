@@ -7,9 +7,9 @@ const phone = import.meta.env.PUBLIC_PHONE ?? '+49 (0) 4282 594650';
 
 // Google Ads conversion — fires here because every form redirects to /danke on
 // success. Values overridable via env; fall back to the production conversion
-// action ("Kontakt Anfrage Website") in prod builds.
+// action ("Kontaktformular Neu") in prod builds.
 const gadsId = import.meta.env.PUBLIC_GADS_CONVERSION_ID || (import.meta.env.PROD ? 'AW-1071942676' : '');
-const gadsLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL || (import.meta.env.PROD ? 'E11hCL_a7ZsYEJSYkv8D' : '');
+const gadsLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL || (import.meta.env.PROD ? 'piVoCIiSlegaEJSYkv8D' : '');
 const gadsSendTo = gadsId && gadsLabel ? `${gadsId}/${gadsLabel}` : '';
 ---
 
