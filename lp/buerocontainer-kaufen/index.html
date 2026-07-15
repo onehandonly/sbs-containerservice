@@ -42,7 +42,7 @@
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer', gtmId);
-      })();</script><!-- Google Ads global site tag (gtag) for conversion tracking fallback --><link rel="stylesheet" href="/_astro/CookieBanner.CXDsC3lh.css">
+      })();</script><!-- Google Ads global site tag (gtag) for conversion tracking fallback --><link rel="stylesheet" href="/_astro/CallTracking.CXDsC3lh.css">
 <link rel="stylesheet" href="/_astro/LandingForm.Ds1QDDlX.css">
 <style>.benefits[data-astro-cid-i4rbyshl]{padding-block:var(--space-section);background-color:var(--color-brand-primary);color:#fff}.benefits__inner[data-astro-cid-i4rbyshl]{max-width:72rem;margin-inline:auto;padding-inline:var(--space-gap)}.benefits[data-astro-cid-i4rbyshl] .section-header__title[data-astro-cid-i4rbyshl]{color:#fff}.benefits[data-astro-cid-i4rbyshl] .section-header__sub[data-astro-cid-i4rbyshl]{color:#c7e2f6}.benefits__stats[data-astro-cid-i4rbyshl]{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:1.5rem;list-style:none;margin-bottom:clamp(2rem,1.5rem + 2.5vw,3.5rem)}.stat-item[data-astro-cid-i4rbyshl]{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.5rem 1rem;background-color:#ffffff1a;border-radius:var(--radius-lg);border:1px solid oklch(100% 0 0 / 15%);gap:.35rem}.stat-item__value[data-astro-cid-i4rbyshl]{font-size:var(--text-2xl);font-weight:800;color:var(--color-brand-accent);line-height:1}.stat-item__label[data-astro-cid-i4rbyshl]{font-size:var(--text-base);font-weight:600;color:#fff}.stat-item__note[data-astro-cid-i4rbyshl]{font-size:var(--text-xs);color:#b7d2e6}.benefits__trust[data-astro-cid-i4rbyshl]{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:center}.trust-item[data-astro-cid-i4rbyshl]{display:flex;align-items:center;gap:.5rem;font-size:var(--text-sm);color:#d3e8f7}.trust-item[data-astro-cid-i4rbyshl] svg[data-astro-cid-i4rbyshl]{color:var(--color-brand-accent);flex-shrink:0}
 .product-info[data-astro-cid-swvvoghd]{padding-block:clamp(3rem,2rem + 4vw,5rem);background-color:var(--color-surface);border-block:1px solid var(--color-border)}.product-info__inner[data-astro-cid-swvvoghd]{max-width:72rem;margin-inline:auto;padding-inline:var(--space-gap);text-align:center}.product-info__heading[data-astro-cid-swvvoghd]{font-size:var(--text-2xl);font-weight:900;color:var(--color-text);letter-spacing:-.02em;margin-bottom:.75rem}.product-info__sub[data-astro-cid-swvvoghd]{font-size:var(--text-base);color:var(--color-text-muted);margin-bottom:2.5rem}.product-grid[data-astro-cid-swvvoghd]{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:56rem;margin-inline:auto}.product-card[data-astro-cid-swvvoghd]{position:relative;background-color:var(--color-surface-alt);border:1.5px solid var(--color-border);border-radius:var(--radius-lg);padding:1.75rem 1.25rem;display:flex;flex-direction:column;gap:.5rem;align-items:center;text-align:center;transition:border-color var(--duration-fast)}.product-card--featured[data-astro-cid-swvvoghd]{border-color:var(--color-brand-primary);background-color:color-mix(in srgb,var(--color-brand-primary) 5%,white)}.product-card__badge[data-astro-cid-swvvoghd]{position:absolute;top:-.75rem;left:50%;transform:translate(-50%);background-color:var(--color-brand-primary);color:#fff;font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .75rem;border-radius:999px}.product-card__size[data-astro-cid-swvvoghd]{font-size:1.75rem;font-weight:900;color:var(--color-brand-primary);line-height:1}.product-card__use[data-astro-cid-swvvoghd]{font-size:var(--text-sm);color:var(--color-text-muted)}.product-card__features[data-astro-cid-swvvoghd]{list-style:none;display:flex;flex-direction:column;gap:.25rem;font-size:var(--text-sm);color:var(--color-text);margin-top:.5rem}.product-card__cta[data-astro-cid-swvvoghd]{font-size:var(--text-sm);font-weight:700;color:var(--color-brand-accent);margin-top:.5rem}.product-card--wide[data-astro-cid-swvvoghd]{grid-column:1 / -1;max-width:36rem;margin-inline:auto;background-color:color-mix(in srgb,var(--color-brand-accent) 5%,white);border-color:var(--color-brand-accent)}@media(max-width:640px){.product-grid[data-astro-cid-swvvoghd]{grid-template-columns:1fr;max-width:22rem}}
@@ -116,6 +116,8 @@ Alle akzeptieren
         functionality_storage: 'granted',
       });
       save('granted');
+      // Let consent-dependent features (e.g. call tracking) react immediately.
+      window.dispatchEvent(new CustomEvent('sbs-consent-changed', { detail: 'granted' }));
       hide();
     }
 
@@ -146,4 +148,29 @@ Alle akzeptieren
 
     if (!hasChoice()) show();
   })();
-</script> <!-- Analytics event bridge --> <script type="module" src="/_astro/LandingLayout.astro_astro_type_script_index_0_lang.hhEEg7ON.js"></script> </body> </html>
+</script> <!-- Google Ads call tracking — swaps phone number after consent --> <script>(function(){const callSendTo = "AW-1071942676/XmjsCOqzvtAcEJSYkv8D";
+const callNumber = "+49 (0) 4282 594650";
+
+    (function () {
+      function apply() {
+        if (typeof window.gtag !== 'function') {
+          setTimeout(apply, 300);
+          return;
+        }
+        window.gtag('config', callSendTo, { phone_conversion_number: callNumber });
+      }
+      function consented() {
+        try {
+          var s = JSON.parse(localStorage.getItem('sbs-consent') || 'null');
+          return s && s.status === 'granted';
+        } catch (e) {
+          return false;
+        }
+      }
+      if (consented()) apply();
+      // Apply as soon as the visitor grants consent via the banner.
+      window.addEventListener('sbs-consent-changed', function (e) {
+        if (e.detail === 'granted') apply();
+      });
+    })();
+  })();</script> <!-- Analytics event bridge --> <script type="module" src="/_astro/LandingLayout.astro_astro_type_script_index_0_lang.hhEEg7ON.js"></script> </body> </html>

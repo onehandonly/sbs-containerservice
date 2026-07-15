@@ -42,7 +42,7 @@
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer', gtmId);
-      })();</script><link rel="stylesheet" href="/_astro/CookieBanner.CXDsC3lh.css">
+      })();</script><link rel="stylesheet" href="/_astro/CallTracking.CXDsC3lh.css">
 <style>.skip-link[data-astro-cid-sckkx6r4]{position:absolute;top:-9999px;left:1rem;background-color:var(--color-brand-primary);color:#fff;padding:.5rem 1rem;border-radius:var(--radius-sm);font-size:var(--text-sm);font-weight:600;text-decoration:none;z-index:9999;transition:top .1s}.skip-link[data-astro-cid-sckkx6r4]:focus-visible{top:1rem;outline:2px solid white;outline-offset:2px}.site-header[data-astro-cid-hnhh3bfe]{position:sticky;top:0;z-index:100;background-color:var(--color-surface);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-sm)}.site-header__inner[data-astro-cid-hnhh3bfe]{display:flex;align-items:center;gap:2rem;max-width:72rem;margin-inline:auto;padding-inline:var(--space-gap);height:7rem}.site-header__logo[data-astro-cid-hnhh3bfe]{display:flex;align-items:center;text-decoration:none;flex-shrink:0}.site-header__logo-img[data-astro-cid-hnhh3bfe]{height:5.5rem;width:auto}.site-header__nav[data-astro-cid-hnhh3bfe]{display:flex;gap:1.75rem;margin-left:auto}.site-header__nav[data-astro-cid-hnhh3bfe] a[data-astro-cid-hnhh3bfe]{text-decoration:none;color:var(--color-text-muted);font-size:var(--text-sm);font-weight:500;transition:color var(--duration-fast)}.site-header__nav[data-astro-cid-hnhh3bfe] a[data-astro-cid-hnhh3bfe]:hover{color:var(--color-brand-primary)}.site-header__cta[data-astro-cid-hnhh3bfe]{display:flex;align-items:center;gap:.4rem;text-decoration:none;color:var(--color-brand-primary);font-weight:600;font-size:var(--text-sm);white-space:nowrap;flex-shrink:0}.site-header__cta[data-astro-cid-hnhh3bfe]:hover{color:var(--color-brand-accent)}@media(max-width:640px){.site-header__nav[data-astro-cid-hnhh3bfe],.site-header__logo-text[data-astro-cid-hnhh3bfe]{display:none}}.site-footer[data-astro-cid-mh6itkc3]{background-color:var(--color-text);color:#bebebe;padding-block:2.5rem}.site-footer__inner[data-astro-cid-mh6itkc3]{max-width:72rem;margin-inline:auto;padding-inline:var(--space-gap);display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem;justify-content:space-between}.site-footer__brand[data-astro-cid-mh6itkc3]{display:flex;flex-direction:column;gap:.35rem}.site-footer__logo-mark[data-astro-cid-mh6itkc3]{font-weight:800;font-size:1rem;color:var(--color-brand-accent);letter-spacing:.05em}.site-footer__tagline[data-astro-cid-mh6itkc3]{font-size:var(--text-sm);color:#8f8f8f}.site-footer__nav[data-astro-cid-mh6itkc3]{display:flex;gap:1.5rem}.site-footer__nav[data-astro-cid-mh6itkc3] a[data-astro-cid-mh6itkc3]{text-decoration:none;color:#9e9e9e;font-size:var(--text-sm);transition:color var(--duration-fast)}.site-footer__nav[data-astro-cid-mh6itkc3] a[data-astro-cid-mh6itkc3]:hover{color:var(--color-brand-accent)}.site-footer__copy[data-astro-cid-mh6itkc3]{font-size:var(--text-xs);color:#717171;width:100%;text-align:center}
 </style>
 <link rel="stylesheet" href="/_astro/index@_@astro.CCPfbPQC.css">
@@ -118,6 +118,8 @@ Alle akzeptieren
         functionality_storage: 'granted',
       });
       save('granted');
+      // Let consent-dependent features (e.g. call tracking) react immediately.
+      window.dispatchEvent(new CustomEvent('sbs-consent-changed', { detail: 'granted' }));
       hide();
     }
 
@@ -148,4 +150,29 @@ Alle akzeptieren
 
     if (!hasChoice()) show();
   })();
-</script> <!-- Analytics event bridge: pushes dataLayer events for GTM triggers --> <script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.C2--5C-8.js"></script> </body> </html>
+</script> <!-- Google Ads call tracking — swaps phone number after consent --> <script>(function(){const callSendTo = "AW-1071942676/XmjsCOqzvtAcEJSYkv8D";
+const callNumber = "+49 (0) 4282 594650";
+
+    (function () {
+      function apply() {
+        if (typeof window.gtag !== 'function') {
+          setTimeout(apply, 300);
+          return;
+        }
+        window.gtag('config', callSendTo, { phone_conversion_number: callNumber });
+      }
+      function consented() {
+        try {
+          var s = JSON.parse(localStorage.getItem('sbs-consent') || 'null');
+          return s && s.status === 'granted';
+        } catch (e) {
+          return false;
+        }
+      }
+      if (consented()) apply();
+      // Apply as soon as the visitor grants consent via the banner.
+      window.addEventListener('sbs-consent-changed', function (e) {
+        if (e.detail === 'granted') apply();
+      });
+    })();
+  })();</script> <!-- Analytics event bridge: pushes dataLayer events for GTM triggers --> <script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.C2--5C-8.js"></script> </body> </html>
