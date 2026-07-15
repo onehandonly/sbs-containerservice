@@ -1,0 +1,47 @@
+---
+/**
+ * Google Ads call tracking ("Calls from a website").
+ *
+ * Swaps the displayed phone number for a Google forwarding number and counts
+ * calls of the configured minimum duration as conversions. This is a marketing
+ * feature, so it only runs once the visitor has granted consent (Consent Mode
+ * v2 / Real Cookie Banner). Reads the stored decision and also reacts to the
+ * `sbs-consent-changed` event dispatched by <CookieBanner /> on accept.
+ *
+ * Values overridable via env; fall back to the production call conversion action
+ * in prod builds. `callNumber` must match the number as displayed on the page so
+ * Google can find and replace it.
+ */
+const callSendTo =
+  import.meta.env.PUBLIC_GADS_CALL_SEND_TO ||
+  (import.meta.env.PROD ? 'AW-1071942676/XmjsCOqzvtAcEJSYkv8D' : '');
+// Must match the number as displayed on the Astro pages so Google can swap it.
+const callNumber = import.meta.env.PUBLIC_GADS_CALL_NUMBER || '+49 (0) 4282 594650';
+---
+
+{callSendTo && (
+  <script is:inline define:vars={{ callSendTo, callNumber }}>
+    (function () {
+      function apply() {
+        if (typeof window.gtag !== 'function') {
+          setTimeout(apply, 300);
+          return;
+        }
+        window.gtag('config', callSendTo, { phone_conversion_number: callNumber });
+      }
+      function consented() {
+        try {
+          var s = JSON.parse(localStorage.getItem('sbs-consent') || 'null');
+          return s && s.status === 'granted';
+        } catch (e) {
+          return false;
+        }
+      }
+      if (consented()) apply();
+      // Apply as soon as the visitor grants consent via the banner.
+      window.addEventListener('sbs-consent-changed', function (e) {
+        if (e.detail === 'granted') apply();
+      });
+    })();
+  </script>
+)}
