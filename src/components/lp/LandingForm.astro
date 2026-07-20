@@ -13,6 +13,8 @@ interface Props {
   formSubheading?: string;
   /** Container type for the prefilled message (e.g. "einen Bürocontainer") */
   containerLabel?: string;
+  /** Prefill the "Ort" field (used on city-specific landing pages) */
+  defaultOrt?: string;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   formHeading = 'Jetzt kostenloses Angebot anfragen',
   formSubheading = 'Antwort in der Regel innerhalb von 3 Stunden – auch samstags.',
   containerLabel = '...',
+  defaultOrt = '',
 } = Astro.props;
 
 const nachrichtDefault = `Sehr geehrtes SBS Team, ich interessiere mich für ${containerLabel}.`;
@@ -280,6 +283,7 @@ const selectConfig = {
           class="lp-form__input"
           autocomplete="address-level2"
           placeholder="Musterstadt"
+          value={defaultOrt}
         />
       </div>
 

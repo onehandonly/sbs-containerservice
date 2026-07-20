@@ -1,0 +1,68 @@
+---
+import type { City } from '../../data/cities';
+
+interface Props {
+  city: City;
+  /** Product noun, e.g. "Lagercontainer" */
+  product: string;
+  /** Short lowercase product description used in the sentence */
+  productLower: string;
+}
+
+const { city, product, productLower } = Astro.props;
+---
+
+<section class="city-band" aria-labelledby="city-band-heading">
+  <div class="city-band__inner">
+    <h2 id="city-band-heading" class="city-band__heading">
+      {product} kaufen in {city.name} und Umgebung
+    </h2>
+    <p class="city-band__text">
+      Sie suchen {productLower} in {city.name} ({city.state})? SBS Containerservice liefert
+      {productLower} zuverlässig nach {city.name} und in die gesamte Region – ab unserem
+      Standort in Sittensen. Sie erhalten geprüfte Qualität zu fairen Festpreisen,
+      persönliche Beratung und eine schnelle Lieferung direkt auf Ihr Grundstück,
+      Betriebsgelände oder Ihre Baustelle in {city.name}.
+    </p>
+    <p class="city-band__text city-band__text--muted">
+      Verkauf ausschließlich an Gewerbetreibende. Fordern Sie jetzt Ihr kostenloses,
+      unverbindliches Festpreisangebot für {city.name} an.
+    </p>
+  </div>
+</section>
+
+<style>
+  .city-band {
+    padding-block: clamp(2.5rem, 2rem + 3vw, 4rem);
+    background-color: var(--color-surface-alt);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .city-band__inner {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+    text-align: center;
+  }
+
+  .city-band__heading {
+    font-size: var(--text-xl);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .city-band__text {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .city-band__text--muted {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+</style>

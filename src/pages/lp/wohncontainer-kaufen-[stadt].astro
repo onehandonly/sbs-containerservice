@@ -1,0 +1,34 @@
+---
+import { cities, type City } from '../../data/cities';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { stadt: city.slug },
+    props: { city },
+  }));
+}
+
+interface Props {
+  city: City;
+}
+
+const { city } = Astro.props;
+// Mirror the generic wohncontainer redirect: send to the matching city
+// Containeranlagen page (Wohncontainer was merged into Containeranlagen).
+const target = `/lp/containeranlagen-kaufen-${city.slug}`;
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={`https://anfrage.sbs-container.de${target}`} />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <title>Weiterleitung – SBS Containerservice GmbH</title>
+    <script set:html={`window.location.replace(${JSON.stringify(target)});`}></script>
+  </head>
+  <body>
+    <p>Diese Seite wurde umbenannt. Falls Sie nicht automatisch weitergeleitet werden: <a href={target}>Zur neuen Seite</a>.</p>
+  </body>
+</html>

@@ -11,6 +11,8 @@ interface Props {
   ogImage?: string;
   /** LCP hero image path for preload hint (e.g. "/img/lagercontainer.jpg") */
   lcpImage?: string;
+  /** Allow indexing (city landing pages); generic LPs stay noindex */
+  index?: boolean;
 }
 
 const {
@@ -19,6 +21,7 @@ const {
   canonical,
   ogImage,
   lcpImage,
+  index = false,
 } = Astro.props;
 
 // Landing pages get their own canonical, explicitly set — never inherit homepage
@@ -45,8 +48,8 @@ const gadsConversionLabel = import.meta.env.PUBLIC_GADS_CONVERSION_LABEL ?? '';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <!-- Dedupe with main site; landing pages are not indexable canonical sources -->
-    <meta name="robots" content="noindex, follow" />
+    <!-- City landing pages are indexable; generic LPs stay out of the index -->
+    <meta name="robots" content={index ? 'index, follow' : 'noindex, follow'} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
