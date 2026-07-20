@@ -1,0 +1,19 @@
+---
+import SanitaercontainerPage from '../../components/lp/pages/SanitaercontainerPage.astro';
+import { cities, type City } from '../../data/cities';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { stadt: city.slug },
+    props: { city },
+  }));
+}
+
+interface Props {
+  city: City;
+}
+
+const { city } = Astro.props;
+---
+
+<SanitaercontainerPage city={city} />

@@ -21,8 +21,18 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Exclude landing pages (Ads traffic only, not organic) and thank-you page
-      filter: (page) => !page.includes('/lp/') && !page.includes('/danke'),
+      // Include the indexable city landing pages; keep the generic Ads LPs,
+      // the wohncontainer redirects and the thank-you page out of the sitemap.
+      filter: (page) => {
+        if (page.includes('/danke')) return false;
+        // City content pages: /lp/<type>-kaufen-<city>
+        if (/\/lp\/(buerocontainer|lagercontainer|sanitaercontainer|containeranlagen)-kaufen-[^/]+\/?$/.test(page)) {
+          return true;
+        }
+        // Everything else under /lp/ (generic base LPs, wohncontainer redirects)
+        if (page.includes('/lp/')) return false;
+        return true;
+      },
     }),
   ],
   vite: {

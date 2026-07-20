@@ -1,0 +1,19 @@
+---
+import BuerocontainerPage from '../../components/lp/pages/BuerocontainerPage.astro';
+import { cities, type City } from '../../data/cities';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { stadt: city.slug },
+    props: { city },
+  }));
+}
+
+interface Props {
+  city: City;
+}
+
+const { city } = Astro.props;
+---
+
+<BuerocontainerPage city={city} />

@@ -1,0 +1,259 @@
+---
+import LandingLayout from '../../../layouts/LandingLayout.astro';
+import LandingHero from '../LandingHero.astro';
+import LandingFeatures from '../LandingFeatures.astro';
+import LandingCityBand from '../LandingCityBand.astro';
+import Benefits from '../../sections/Benefits.astro';
+import LandingForm from '../LandingForm.astro';
+import { lpCopy, type LpBase } from '../../../lib/lpCopy';
+import type { City } from '../../../data/cities';
+
+interface Props {
+  city?: City | null;
+}
+
+const { city = null } = Astro.props;
+
+const BASE: LpBase = {
+  product: 'Containeranlagen',
+  gtmBase: 'lp_containeranlagen',
+  canonicalPath: '/lp/containeranlagen-kaufen',
+  titleSuffix: 'maßgeschneidert für Ihr Projekt | SBS Container GmbH',
+  headlineSuffix: 'maßgeschneidert, schlüsselfertig, sofort einsetzbar',
+  subline:
+    'Individuelle Containeranlagen aus mehreren Modulen – Büro-, Sanitär- und Lagereinheiten kombiniert nach Ihrem Bedarf.',
+  descriptionBase:
+    'Containeranlagen kaufen: individuelle Kombinationen aus Büro-, Sanitär- und Lagereinheiten. Schlüsselfertig, faire Festpreise. Jetzt kostenloses Angebot anfragen!',
+};
+
+const copy = lpCopy(BASE, city);
+
+const features = [
+  {
+    icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+    title: 'Maßgeschneiderte Module',
+    body: 'Wir kombinieren Büro-, Sanitär- und Lagereinheiten zu einer Anlage, die exakt zu Ihrem Projekt passt – von der einzelnen Baustelle bis zur kompletten Außenstelle.',
+  },
+  {
+    icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+    title: 'Schlüsselfertig & einsatzbereit',
+    body: 'Komplett verbunden, mit Innenübergängen, Elektroinstallation und Sanitäranschlüssen. Sie bekommen eine fertige Anlage, kein Container-Puzzle.',
+  },
+  {
+    icon: '<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>',
+    title: 'Erweiterbar & flexibel',
+    body: 'Wachsen Ihre Anforderungen, wächst die Anlage mit. Einzelmodule lassen sich später nachrüsten, austauschen oder umstellen.',
+  },
+  {
+    icon: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+    title: 'Transparente Festpreise',
+    body: 'Kein Kleingedrucktes. Verbindliches Angebot vor Auftragserteilung – inklusive Anlieferung, Aufstellung und Verbindung der Module.',
+  },
+];
+---
+
+<LandingLayout
+  title={copy.title}
+  description={copy.description}
+  canonical={copy.canonical}
+  lcpImage="/img/containeranlagen.avif"
+  index={!!city}
+>
+  <LandingHero
+    headline={copy.headline}
+    subline={copy.subline}
+    ctaLabel="Jetzt Angebot anfragen"
+    ctaHref="#anfrage"
+    gtmLabel={copy.gtmLabel}
+    badge="Kostenlos & unverbindlich"
+    image="/img/containeranlagen.avif"
+    imageAlt="SBS Containeranlage – modular kombiniert"
+  />
+
+  {city && <LandingCityBand city={city} product="Containeranlagen" productLower="Containeranlagen" />}
+
+  <LandingFeatures
+    heading="Unsere Vorteile"
+    features={features}
+  />
+
+  <!-- Product overview section -->
+  <section class="product-info" aria-labelledby="product-heading">
+    <div class="product-info__inner">
+      <h2 id="product-heading" class="product-info__heading">Beispielkonfigurationen</h2>
+      <p class="product-info__sub">Jede Anlage planen wir individuell – hier ein paar typische Kombinationen als Orientierung.</p>
+      <ul class="product-grid" role="list">
+        <li class="product-card">
+          <span class="product-card__size">Büro + Sanitär</span>
+          <span class="product-card__use">Kompakte Baustellen-Lösung</span>
+          <ul class="product-card__features">
+            <li>1× Bürocontainer 20 Fuß</li>
+            <li>1× Sanitärcontainer (WC + Dusche)</li>
+            <li>Innenverbindung möglich</li>
+          </ul>
+          <span class="product-card__cta">Preis auf Anfrage</span>
+        </li>
+        <li class="product-card product-card--featured">
+          <span class="product-card__badge">Beliebt</span>
+          <span class="product-card__size">Büro + Lager</span>
+          <span class="product-card__use">Außenstelle für Handwerk & Industrie</span>
+          <ul class="product-card__features">
+            <li>1–2× Bürocontainer</li>
+            <li>1–2× Lagercontainer</li>
+            <li>Auch mit Regalsystem</li>
+          </ul>
+          <span class="product-card__cta">Preis auf Anfrage</span>
+        </li>
+        <li class="product-card">
+          <span class="product-card__size">Komplett-Anlage</span>
+          <span class="product-card__use">Büro + Sanitär + Lager</span>
+          <ul class="product-card__features">
+            <li>Mehrere Module verbunden</li>
+            <li>Eigene Versorgung möglich</li>
+            <li>Ideal für längere Projekte</li>
+          </ul>
+          <span class="product-card__cta">Preis auf Anfrage</span>
+        </li>
+        <li class="product-card product-card--wide">
+          <span class="product-card__size">Großanlagen & Sonderbauten</span>
+          <span class="product-card__use">Mehrgeschossig oder individuell geplant</span>
+          <ul class="product-card__features">
+            <li>Auch zweigeschossig realisierbar</li>
+            <li>Trennwände, Fenster, Klima nach Wunsch</li>
+            <li>Komplette Planung inklusive</li>
+          </ul>
+          <span class="product-card__cta">Preis auf Anfrage</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <Benefits />
+
+  <LandingForm
+    ctaLabel="Jetzt Angebot anfragen"
+    gtmLabel={copy.gtmLabel}
+    selectVariant="anlagen-modul"
+    showFirmaField={true}
+    containerLabel="eine Containeranlage"
+    formHeading="Kontakt – Kostenloses Angebot"
+    formSubheading="Beschreiben Sie Ihr Projekt – wir melden uns innerhalb von 3 Stunden mit einem Festpreisangebot."
+    defaultOrt={copy.cityName ?? ''}
+  />
+</LandingLayout>
+
+<style>
+  .product-info {
+    padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+    background-color: var(--color-surface);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .product-info__inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-gap);
+    text-align: center;
+  }
+
+  .product-info__heading {
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-info__sub {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .product-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+
+  .product-card {
+    position: relative;
+    background-color: var(--color-surface-alt);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+    transition: border-color var(--duration-fast);
+  }
+
+  .product-card--featured {
+    border-color: var(--color-brand-primary);
+    background-color: color-mix(in srgb, var(--color-brand-primary) 5%, white);
+  }
+
+  .product-card__badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-brand-primary);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  .product-card__size {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-brand-primary);
+    line-height: 1.1;
+  }
+
+  .product-card__use {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .product-card__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    margin-top: 0.5rem;
+  }
+
+  .product-card__cta {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-brand-accent);
+    margin-top: 0.5rem;
+  }
+
+  .product-card--wide {
+    grid-column: 1 / -1;
+    max-width: 36rem;
+    margin-inline: auto;
+    background-color: color-mix(in srgb, var(--color-brand-accent) 5%, white);
+    border-color: var(--color-brand-accent);
+  }
+
+  @media (max-width: 640px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+      max-width: 22rem;
+    }
+  }
+</style>
