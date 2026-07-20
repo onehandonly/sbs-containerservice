@@ -1,12 +1,14 @@
 // AUTO-GENERATED city dataset for programmatic landing pages.
 // Source: German Zensus 2022 population + coordinates; filtered to
 // population >= 10,000 within 250 km (straight-line) of Sittensen.
+// Slugs prefer the natural short form (e.g. "verden"); where two cities
+// share a short form the larger keeps it and the smaller stays qualified.
 // Regenerate rather than hand-editing individual entries.
 
 export interface City {
-  /** City name as displayed (e.g. "Hamburg", "Rotenburg (Wümme)") */
+  /** City name as displayed (e.g. "Hamburg", "Verden (Aller)") */
   name: string;
-  /** URL-safe slug used in the page path (e.g. "rotenburg-wuemme") */
+  /** URL-safe slug used in the page path (e.g. "verden") */
   slug: string;
   /** Federal state (Bundesland) */
   state: string;
@@ -64,7 +66,7 @@ export const cities: City[] = [
   { name: "Garbsen", slug: "garbsen", state: "Niedersachsen", distanceKm: 96 },
   { name: "Unna", slug: "unna", state: "Nordrhein-Westfalen", distanceKm: 229 },
   { name: "Hameln", slug: "hameln", state: "Niedersachsen", distanceKm: 131 },
-  { name: "Lingen (Ems)", slug: "lingen-ems", state: "Niedersachsen", distanceKm: 169 },
+  { name: "Lingen (Ems)", slug: "lingen", state: "Niedersachsen", distanceKm: 169 },
   { name: "Langenhagen", slug: "langenhagen", state: "Niedersachsen", distanceKm: 94 },
   { name: "Bad Salzuflen", slug: "bad-salzuflen", state: "Nordrhein-Westfalen", distanceKm: 142 },
   { name: "Nordhorn", slug: "nordhorn", state: "Niedersachsen", distanceKm: 189 },
@@ -78,7 +80,7 @@ export const cities: City[] = [
   { name: "Emden", slug: "emden", state: "Niedersachsen", distanceKm: 153 },
   { name: "Bergkamen", slug: "bergkamen", state: "Nordrhein-Westfalen", distanceKm: 224 },
   { name: "Rheda-Wiedenbrück", slug: "rheda-wiedenbrueck", state: "Nordrhein-Westfalen", distanceKm: 179 },
-  { name: "Gronau (Westfalen)", slug: "gronau-westfalen", state: "Nordrhein-Westfalen", distanceKm: 204 },
+  { name: "Gronau (Westfalen)", slug: "gronau", state: "Nordrhein-Westfalen", distanceKm: 204 },
   { name: "Bad Oeynhausen", slug: "bad-oeynhausen", state: "Nordrhein-Westfalen", distanceKm: 129 },
   { name: "Cuxhaven", slug: "cuxhaven", state: "Niedersachsen", distanceKm: 84 },
   { name: "Stade", slug: "stade", state: "Niedersachsen", distanceKm: 36 },
@@ -158,9 +160,9 @@ export const cities: City[] = [
   { name: "Höxter", slug: "hoexter", state: "Nordrhein-Westfalen", distanceKm: 168 },
   { name: "Reinbek", slug: "reinbek", state: "Schleswig-Holstein", distanceKm: 56 },
   { name: "Baunatal", slug: "baunatal", state: "Hessen", distanceKm: 224 },
-  { name: "Verden (Aller)", slug: "verden-aller", state: "Niedersachsen", distanceKm: 43 },
+  { name: "Verden (Aller)", slug: "verden", state: "Niedersachsen", distanceKm: 43 },
   { name: "Sundern", slug: "sundern", state: "Nordrhein-Westfalen", distanceKm: 241 },
-  { name: "Lohne (Oldenburg)", slug: "lohne-oldenburg", state: "Niedersachsen", distanceKm: 109 },
+  { name: "Lohne (Oldenburg)", slug: "lohne", state: "Niedersachsen", distanceKm: 109 },
   { name: "Schloß Holte-Stukenbrock", slug: "schloss-holte-stukenbrock", state: "Nordrhein-Westfalen", distanceKm: 166 },
   { name: "Aschersleben", slug: "aschersleben", state: "Sachsen-Anhalt", distanceKm: 215 },
   { name: "Nordenham", slug: "nordenham", state: "Niedersachsen", distanceKm: 73 },
@@ -185,7 +187,7 @@ export const cities: City[] = [
   { name: "Ronnenberg", slug: "ronnenberg", state: "Niedersachsen", distanceKm: 107 },
   { name: "Syke", slug: "syke", state: "Niedersachsen", distanceKm: 61 },
   { name: "Rathenow", slug: "rathenow", state: "Brandenburg", distanceKm: 204 },
-  { name: "Haren (Ems)", slug: "haren-ems", state: "Niedersachsen", distanceKm: 163 },
+  { name: "Haren (Ems)", slug: "haren", state: "Niedersachsen", distanceKm: 163 },
   { name: "Varel", slug: "varel", state: "Niedersachsen", distanceKm: 92 },
   { name: "Quedlinburg", slug: "quedlinburg", state: "Sachsen-Anhalt", distanceKm: 199 },
   { name: "Sehnde", slug: "sehnde", state: "Niedersachsen", distanceKm: 111 },
@@ -203,7 +205,7 @@ export const cities: City[] = [
   { name: "Stadthagen", slug: "stadthagen", state: "Niedersachsen", distanceKm: 108 },
   { name: "Burg", slug: "burg", state: "Sachsen-Anhalt", distanceKm: 194 },
   { name: "Gardelegen", slug: "gardelegen", state: "Sachsen-Anhalt", distanceKm: 152 },
-  { name: "Rotenburg (Wümme)", slug: "rotenburg-wuemme", state: "Niedersachsen", distanceKm: 20 },
+  { name: "Rotenburg (Wümme)", slug: "rotenburg", state: "Niedersachsen", distanceKm: 20 },
   { name: "Bad Harzburg", slug: "bad-harzburg", state: "Niedersachsen", distanceKm: 171 },
   { name: "Versmold", slug: "versmold", state: "Nordrhein-Westfalen", distanceKm: 165 },
   { name: "Quickborn", slug: "quickborn", state: "Schleswig-Holstein", distanceKm: 57 },
@@ -351,7 +353,7 @@ export const cities: City[] = [
   { name: "Balve", slug: "balve", state: "Nordrhein-Westfalen", distanceKm: 243 },
   { name: "Schöningen", slug: "schoeningen", state: "Niedersachsen", distanceKm: 160 },
   { name: "Bad Belzig", slug: "bad-belzig", state: "Brandenburg", distanceKm: 243 },
-  { name: "Werther (Westfalen)", slug: "werther-westfalen", state: "Nordrhein-Westfalen", distanceKm: 152 },
+  { name: "Werther (Westfalen)", slug: "werther", state: "Nordrhein-Westfalen", distanceKm: 152 },
   { name: "Osterwieck", slug: "osterwieck", state: "Sachsen-Anhalt", distanceKm: 167 },
   { name: "Glückstadt", slug: "glueckstadt", state: "Schleswig-Holstein", distanceKm: 58 },
   { name: "Boizenburg", slug: "boizenburg", state: "Mecklenburg-Vorpommern", distanceKm: 81 },
@@ -379,3 +381,14 @@ export const cities: City[] = [
 ];
 
 export const citySlugs = cities.map((c) => c.slug);
+
+/** Old verbose slug -> new short slug, for backward-compatible redirects. */
+export const citySlugAliases: ReadonlyArray<readonly [string, string]> = [
+  ["rotenburg-wuemme", "rotenburg"],
+  ["verden-aller", "verden"],
+  ["lohne-oldenburg", "lohne"],
+  ["werther-westfalen", "werther"],
+  ["haren-ems", "haren"],
+  ["lingen-ems", "lingen"],
+  ["gronau-westfalen", "gronau"],
+];
