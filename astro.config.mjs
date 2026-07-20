@@ -3,6 +3,31 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+// City landing-page slugs use the natural short form (e.g. "verden"). These
+// pairs map the earlier verbose slug to the new short one so any existing link
+// keeps working. Keep in sync with citySlugAliases in src/data/cities.ts.
+const lpTypes = [
+  'buerocontainer',
+  'lagercontainer',
+  'sanitaercontainer',
+  'containeranlagen',
+  'wohncontainer',
+];
+const citySlugAliases = [
+  ['rotenburg-wuemme', 'rotenburg'],
+  ['verden-aller', 'verden'],
+  ['lohne-oldenburg', 'lohne'],
+  ['werther-westfalen', 'werther'],
+  ['haren-ems', 'haren'],
+  ['lingen-ems', 'lingen'],
+  ['gronau-westfalen', 'gronau'],
+];
+const citySlugRedirects = Object.fromEntries(
+  citySlugAliases.flatMap(([from, to]) =>
+    lpTypes.map((t) => [`/lp/${t}-kaufen-${from}`, `/lp/${t}-kaufen-${to}`]),
+  ),
+);
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://anfrage.sbs-container.de',
@@ -18,6 +43,7 @@ export default defineConfig({
     '/lagercontainer-kaufen': '/lp/lagercontainer-kaufen',
     '/containeranlagen-kaufen': '/lp/containeranlagen-kaufen',
     '/wohncontainer-kaufen': '/lp/wohncontainer-kaufen',
+    ...citySlugRedirects,
   },
   integrations: [
     sitemap({
