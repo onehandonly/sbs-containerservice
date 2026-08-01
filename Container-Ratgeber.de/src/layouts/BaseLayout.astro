@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import ConsentMode from '../components/ConsentMode.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import { site } from '../lib/site';
+import { getLangFromUrl, switchLangPath, type Lang } from '../lib/i18n';
 
 interface Props {
   title: string;
@@ -28,6 +29,13 @@ const {
 } = Astro.props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+
+// hreflang-Alternates (DE/EN) für zweisprachiges SEO.
+const curLang: Lang = getLangFromUrl(Astro.url);
+const dePath = curLang === 'de' ? Astro.url.pathname : switchLangPath(Astro.url, 'de');
+const enPath = curLang === 'en' ? Astro.url.pathname : switchLangPath(Astro.url, 'en');
+const deHref = new URL(dePath, Astro.site).href;
+const enHref = new URL(enPath, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
 const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
 
@@ -60,6 +68,13 @@ const schemas = [orgSchema, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [json
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {index && (
+      <>
+        <link rel="alternate" hreflang="de" href={deHref} />
+        <link rel="alternate" hreflang="en" href={enHref} />
+        <link rel="alternate" hreflang="x-default" href={deHref} />
+      </>
+    )}
     <meta name="robots" content={index ? 'index,follow' : 'noindex,nofollow'} />
     <meta name="theme-color" content="#c8102e" />
     <meta name="generator" content={Astro.generator} />

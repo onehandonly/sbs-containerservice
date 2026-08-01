@@ -9,6 +9,8 @@ const guides = defineCollection({
     title: z.string(),
     // Kurzbeschreibung für Teaser, Meta-Description und Kategorieseiten.
     description: z.string(),
+    // Sprache des Artikels.
+    lang: z.enum(['de', 'en']).default('de'),
     // Thematische Einordnung (z. B. "Grundlagen", "Kaufberatung", "Containertypen").
     category: z.string(),
     // Optionales Icon-Kürzel für die Illustration (siehe src/lib/icons).
