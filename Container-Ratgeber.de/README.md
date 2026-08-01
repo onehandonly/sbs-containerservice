@@ -91,18 +91,17 @@ echte Anzeigen (Slot-IDs in `AdSlot`-Komponenten ergänzen).
 
 ## Deployment über GitHub Pages
 
-Der Workflow `.github/workflows/deploy-container-ratgeber.yml` (im Repo-Root)
-baut den Ordner `Container-Ratgeber.de/` und veröffentlicht ihn.
+Der Workflow `.github/workflows/deploy.yml` baut das Projekt und veröffentlicht es
+über GitHub Pages.
 
 **Einmalige Einrichtung im Repository:**
 
 1. **Settings → Pages → Build and deployment → Source:** „GitHub Actions".
 2. **Settings → Pages → Custom domain:** `container-ratgeber.de` eintragen
    (nutzt `public/CNAME`). „Enforce HTTPS" aktivieren, sobald verfügbar.
-3. Nach dem Merge in `main` läuft der Workflow automatisch.
-
-> Wird dieser Ordner später in ein **eigenes Repository** ausgelagert, im Workflow
-> die Angaben `working-directory` und `path` auf das Repo-Root anpassen.
+3. Optional unter **Settings → Secrets and variables → Actions → Variables** die
+   Werte `PUBLIC_GA_ID`, `PUBLIC_GTM_ID`, `PUBLIC_ADSENSE_CLIENT` hinterlegen.
+4. Bei jedem Push auf `main` läuft der Workflow automatisch.
 
 ### DNS bei inwx.de einrichten
 
