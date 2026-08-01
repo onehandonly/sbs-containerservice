@@ -32,7 +32,7 @@ const featured = lang === 'en'
 <section class="hero">
   <div class="wrap hero__inner">
     <div class="hero__copy">
-      <span class="pill pill--on-dark">◆ {t('hero.badge')}</span>
+      <span class="pill">◆ {t('hero.badge')}</span>
       <h1 class="hero__title">
         <span>{t('hero.title.1')}</span>
         <span class="hero__title-accent">{t('hero.title.2')}</span>
@@ -40,7 +40,7 @@ const featured = lang === 'en'
       <p class="hero__lead">{t('hero.lead')}</p>
       <div class="hero__actions">
         <a href={L('/ratgeber')} class="btn btn--bright btn--lg">{t('hero.cta.primary')}</a>
-        <a href={L('/container')} class="btn btn--on-dark btn--lg">{t('hero.cta.secondary')}</a>
+        <a href={L('/container')} class="btn btn--ghost btn--lg">{t('hero.cta.secondary')}</a>
       </div>
       <dl class="hero__stats">
         <div><dt>8</dt><dd>{t('hero.stat.types')}</dd></div>
@@ -99,7 +99,7 @@ const featured = lang === 'en'
 </section>
 
 <!-- ============ WARUM WIR ============ -->
-<section class="section section--night">
+<section class="section why-section">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">{t('why.eyebrow')}</span>
@@ -127,18 +127,24 @@ const featured = lang === 'en'
 </section>
 
 <style>
-  /* Hero */
-  .hero { background: var(--grad-night); color: var(--color-on-dark); overflow: hidden; }
+  /* Hero – hell, brand-getönt */
+  .hero {
+    background:
+      radial-gradient(760px 460px at 92% -12%, rgba(34,211,238,.16), transparent 58%),
+      radial-gradient(680px 440px at -4% 2%, rgba(91,140,255,.16), transparent 55%),
+      linear-gradient(180deg, #ffffff 0%, var(--color-bg-alt) 100%);
+    color: var(--color-ink); overflow: hidden; border-bottom: 1px solid var(--color-border);
+  }
   .hero__inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--gap); align-items: center; padding-block: clamp(3rem, 2rem + 5vw, 6rem); }
-  .hero__title { font-size: var(--text-hero); line-height: 1.03; letter-spacing: -0.03em; margin: 1.25rem 0 0; color: #fff; text-wrap: balance; }
+  .hero__title { font-size: var(--text-hero); line-height: 1.03; letter-spacing: -0.03em; margin: 1.25rem 0 0; color: var(--color-ink); text-wrap: balance; }
   .hero__title span { display: block; }
-  .hero__title-accent { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero__lead { color: var(--color-on-dark-soft); font-size: var(--text-lg); margin-top: 1.25rem; max-width: 40ch; }
+  .hero__title-accent { background: var(--grad-brand-deep); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero__lead { color: var(--color-ink-soft); font-size: var(--text-lg); margin-top: 1.25rem; max-width: 40ch; }
   .hero__actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.9rem; }
   .hero__stats { display: flex; gap: 2rem; margin-top: 2.6rem; flex-wrap: wrap; }
   .hero__stats div { display: flex; flex-direction: column; }
-  .hero__stats dt { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; color: #fff; }
-  .hero__stats dd { font-size: var(--text-xs); color: var(--color-on-dark-soft); max-width: 12ch; }
+  .hero__stats dt { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; color: var(--color-signal); }
+  .hero__stats dd { font-size: var(--text-xs); color: var(--color-muted); max-width: 12ch; }
   .hero__art { padding: 1rem; }
   @media (max-width: 860px) { .hero__inner { grid-template-columns: 1fr; } .hero__art { order: -1; max-width: 20rem; } }
 
@@ -157,12 +163,13 @@ const featured = lang === 'en'
   .topic p { color: var(--color-ink-soft); font-size: var(--text-sm); margin-top: 0.25rem; }
   .section-cta { margin-top: 2rem; }
 
-  /* Warum wir */
+  /* Warum wir – hell */
+  .why-section { background: var(--color-bg-alt); }
   .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .why__item { border-top: 2px solid var(--color-line-dark); padding-top: 1.2rem; }
-  .why__n { font-family: var(--font-head); font-weight: 800; color: #7fe3f2; font-size: 0.9rem; letter-spacing: 0.1em; }
-  .why__item h3 { color: #fff; font-size: var(--text-lg); margin-top: 0.5rem; }
-  .why__item p { color: var(--color-on-dark-soft); font-size: var(--text-sm); margin-top: 0.5rem; }
+  .why__item { border-top: 3px solid var(--color-signal); padding-top: 1.2rem; }
+  .why__n { font-family: var(--font-head); font-weight: 800; color: var(--color-signal); font-size: 0.9rem; letter-spacing: 0.1em; }
+  .why__item h3 { color: var(--color-ink); font-size: var(--text-lg); margin-top: 0.5rem; }
+  .why__item p { color: var(--color-ink-soft); font-size: var(--text-sm); margin-top: 0.5rem; }
   @media (max-width: 760px) { .why { grid-template-columns: 1fr; gap: 1.2rem; } }
 
   /* End-CTA */
